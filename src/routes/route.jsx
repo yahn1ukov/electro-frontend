@@ -6,8 +6,7 @@ import {
     ModeratorPage,
     PartnershipPage,
     RegistrationPage,
-    StationUserPage,
-    UserPage
+    StationUserPage
 } from "../components/pages";
 
 const useRoutes = (isAuthentication, role) => (
@@ -24,16 +23,14 @@ const useRoutes = (isAuthentication, role) => (
 );
 
 const WhatIsUser = ({role}) => {
-    if (role === "ADMIN") {
-        return <AdminPage/>;
-    } else if (role === "CHARGER") {
+    if (role === "CHARGER") {
         return <ChargerUserPage/>;
     } else if (role === "SERVICE") {
         return <StationUserPage/>;
     } else if (role === "MODERATOR") {
         return <ModeratorPage/>;
     } else {
-        return <UserPage/>;
+        return <AdminPage/>;
     }
 }
 

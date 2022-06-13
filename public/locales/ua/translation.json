@@ -4,6 +4,9 @@
       "login": "Вхід",
       "registration": "Реєстрація",
       "partnership": "Подати на партнерство"
+    },
+    "isAuthentication": {
+      "leave": "Покинути"
     }
   },
   "form": {
@@ -31,6 +34,31 @@
     },
     "yup": {
       "required": "Обов'язкове поле"
+    }
+  },
+  "buttons": {
+    "refresh": "Оновити",
+    "delete": "Видалити"
+  },
+  "complaint": {
+    "warnings": {
+      "charger": "Немає скарг на зарядні станції",
+      "station": "Немає скарг на станції технічного обслуговування"
+    },
+    "elements": {
+      "user": "Користувач",
+      "company": "Компанія",
+      "name": "Назва",
+      "country": "Країна",
+      "city": "Місто",
+      "street": "Вулиця",
+      "zipCode": "Поштовий індекс",
+      "description": "Опис"
+    }
+  },
+  "charger": {
+    "warnings": {
+      "charger": "Немає зарядних станцій"
     }
   }
 }

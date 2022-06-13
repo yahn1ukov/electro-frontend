@@ -1,18 +1,16 @@
-import LoginPage from "./authentication/loginPage";
-import RegistrationPage from "./authentication/registrationPage";
-import PartnershipPage from "./authentication/partnershipPage";
-import AdminPage from "./users/adminPage";
-import UserPage from "./users/userPage";
-import ChargerUserPage from "./users/chargerUserPage";
-import StationUserPage from "./users/stationUserPage";
-import ModeratorPage from "./users/moderatorPage";
+import LoginPage from "./authentication/LoginPage";
+import RegistrationPage from "./authentication/RegistrationPage";
+import PartnershipPage from "./authentication/PartnershipPage";
+import AdminPage from "./users/AdminPage";
+import ChargerUserPage from "./users/ChargerUserPage";
+import StationUserPage from "./users/StationUserPage";
+import ModeratorPage from "./users/ModeratorPage";
 
 export {
     LoginPage,
     RegistrationPage,
     PartnershipPage,
     AdminPage,
-    UserPage,
     ChargerUserPage,
     StationUserPage,
     ModeratorPage

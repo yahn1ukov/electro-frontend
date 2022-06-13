@@ -3,7 +3,7 @@ import AuthContext from "../../context/auth.context";
 import useRoutes from "../../routes/route";
 import {useAuth} from "../../hooks";
 import {BrowserRouter as Router} from "react-router-dom";
-import Navbar from "../navbar/navbar";
+import Navbar from "../navbar/Navbar";
 
 const App = () => {
     const {id, email, token, role, login, logout, isAuth} = useAuth();
