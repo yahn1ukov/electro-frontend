@@ -1,0 +1,36 @@
+{
+  "navbar": {
+    "isNotAuthentication": {
+      "login": "Login",
+      "registration": "Registration",
+      "partnership": "Apply for partnership"
+    }
+  },
+  "form": {
+    "name": {
+      "login": "Login",
+      "registration": "Registration",
+      "partnership": {
+        "charger": "Charger Station",
+        "station": "Service Station"
+      }
+    },
+    "elements": {
+      "buttons": {
+        "login": "Login",
+        "registration": "Registration",
+        "partnership": "Apply"
+      }
+    },
+    "field": {
+      "email": "Email",
+      "fName": "First name",
+      "lName": "Last name",
+      "password": "Password",
+      "company": "Company"
+    },
+    "yup": {
+      "required": "Required field"
+    }
+  }
+}

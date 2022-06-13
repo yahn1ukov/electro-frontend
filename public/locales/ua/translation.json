@@ -1,0 +1,36 @@
+{
+  "navbar": {
+    "isNotAuthentication": {
+      "login": "Вхід",
+      "registration": "Реєстрація",
+      "partnership": "Подати на партнерство"
+    }
+  },
+  "form": {
+    "name": {
+      "login": "Вхід",
+      "registration": "Реєстрація",
+      "partnership": {
+        "charger": "Зарядні станції",
+        "station": "СТО"
+      }
+    },
+    "elements": {
+      "buttons": {
+        "login": "Увійти",
+        "registration": "Зареєструватися",
+        "partnership": "Подати"
+      }
+    },
+    "field": {
+      "email": "Електронна пошта",
+      "fName": "Ім'я",
+      "lName": "Прізвище",
+      "password": "Пароль",
+      "company": "Назва компанії"
+    },
+    "yup": {
+      "required": "Обов'язкове поле"
+    }
+  }
+}
