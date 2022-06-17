@@ -2,18 +2,22 @@ import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import React from "react";
+import React, {useState} from "react";
 
 const RegistrationForm = () => {
-    const {request, clearError} = useHttp();
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
+    const {request, clearError, loading} = useHttp();
     const {t} = useTranslation();
 
-    const initialValues = {email: "", fName: "", lName: "", password: ""};
+    const initialValues = {email: "", firstName: "", lastName: "", password: ""};
 
     const onSubmit = async (values) => {
         try {
             await request("http://localhost:8080/api/v1/auth/register/user", "POST", {...values});
+            setSuccess(t("form.message.success"));
         } catch (e) {
+            setError(t("form.message.error"));
         }
     }
 
@@ -22,8 +26,8 @@ const RegistrationForm = () => {
             initialValues={initialValues}
             validationSchema={Yup.object({
                 email: Yup.string().required(t("form.yup.required")),
-                fName: Yup.string().required(t("form.yup.required")),
-                lName: Yup.string().required(t("form.yup.required")),
+                firstName: Yup.string().required(t("form.yup.required")),
+                lastName: Yup.string().required(t("form.yup.required")),
                 password: Yup.string().required(t("form.yup.required"))
             })}
             onSubmit={onSubmit}
@@ -32,6 +36,24 @@ const RegistrationForm = () => {
                 <h3 className="form-title">
                     <span className="form-title-text">{t("form.name.registration")}</span>
                 </h3>
+                {
+                    success &&
+                    <p style={{textAlign: "center", border: "1px solid green", borderRadius: "5px"}}>
+                        <span style={{color: "green"}}>{success}</span>
+                    </p>
+                }
+                {
+                    loading &&
+                    <p style={{textAlign: "center", border: "1px solid #ced4da", borderRadius: "5px"}}>
+                        <span style={{color: "#ced4da"}}>{t("form.message.loading")}</span>
+                    </p>
+                }
+                {
+                    error &&
+                    <p style={{textAlign: "center", border: "1px solid red", borderRadius: "5px"}}>
+                        <span style={{color: "red"}}>{error}</span>
+                    </p>
+                }
                 <div className="mb-2">
                     <label htmlFor="inputEmail" className="form-label">{t("form.field.email")}</label>
                     <Field
@@ -51,13 +73,13 @@ const RegistrationForm = () => {
                     <label htmlFor="inputFirstName" className="form-label">{t("form.field.fName")}</label>
                     <Field
                         type="text"
-                        name="fName"
+                        name="firstName"
                         className="form-control"
                         id="inputFirstName"
                         required
                     />
                     <ErrorMessage
-                        name="fName"
+                        name="firstName"
                         component="span"
                         style={{"color": "red"}}
                     />
@@ -66,13 +88,13 @@ const RegistrationForm = () => {
                     <label htmlFor="inputLastName" className="form-label">{t("form.field.lName")}</label>
                     <Field
                         type="text"
-                        name="lName"
+                        name="lastName"
                         className="form-control"
                         id="inputLastName"
                         required
                     />
                     <ErrorMessage
-                        name="lName"
+                        name="lastName"
                         component="span"
                         style={{"color": "red"}}
                     />

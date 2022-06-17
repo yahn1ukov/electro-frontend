@@ -1,17 +1,19 @@
 import LoginPage from "./authentication/LoginPage";
 import RegistrationPage from "./authentication/RegistrationPage";
 import PartnershipPage from "./authentication/PartnershipPage";
-import AdminPage from "./users/AdminPage";
+import VerificationUsersPage from "./users/VerificationUsersPage";
 import ChargerUserPage from "./users/ChargerUserPage";
 import StationUserPage from "./users/StationUserPage";
 import ModeratorPage from "./users/ModeratorPage";
+import NoVerificationUsersPage from "./users/NoVerificationUsersPage";
 
 export {
     LoginPage,
     RegistrationPage,
     PartnershipPage,
-    AdminPage,
+    VerificationUsersPage,
     ChargerUserPage,
     StationUserPage,
-    ModeratorPage
+    ModeratorPage,
+    NoVerificationUsersPage
 };

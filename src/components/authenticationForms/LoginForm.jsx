@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
@@ -6,8 +6,10 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 
 const LoginForm = () => {
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
     const {login} = useContext(AuthContext);
-    const {request, clearError} = useHttp();
+    const {request, clearError, loading} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {email: "", password: ""};
@@ -15,8 +17,10 @@ const LoginForm = () => {
     const onSubmit = async (values) => {
         try {
             const data = await request("http://localhost:8080/api/v1/auth/login", "POST", {...values});
+            setSuccess(t("form.message.success"));
             login(data.id, data.email, data.token, data.role);
         } catch (e) {
+            setError(t("form.message.error"));
         }
     }
 
@@ -33,6 +37,24 @@ const LoginForm = () => {
                 <h3 className="form-title">
                     <span className="form-title-text">{t("form.name.login")}</span>
                 </h3>
+                {
+                    success &&
+                    <p style={{textAlign: "center", border: "1px solid green", borderRadius: "5px"}}>
+                        <span style={{color: "green"}}>{success}</span>
+                    </p>
+                }
+                {
+                    loading &&
+                    <p style={{textAlign: "center", border: "1px solid #ced4da", borderRadius: "5px"}}>
+                        <span style={{color: "#ced4da"}}>{t("form.message.loading")}</span>
+                    </p>
+                }
+                {
+                    error &&
+                    <p style={{textAlign: "center", border: "1px solid red", borderRadius: "5px"}}>
+                        <span style={{color: "red"}}>{error}</span>
+                    </p>
+                }
                 <div className="mb-2">
                     <label htmlFor="inputEmail" className="form-label">{t("form.field.email")}</label>
                     <Field

@@ -12,8 +12,8 @@ const ComplaintChargerList = () => {
 
     const getListComplaintsCharger = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/moderator/get/complaint/charger/all", "GET", null, {
-                Authorization: `Bearer ${token}`
+            return await request("http://localhost:8080/api/v1/moderators/get/complaints/of/chargers/all", "GET", null, {
+                Authorization: `${token}`
             });
         } catch (e) {
         }
@@ -25,7 +25,7 @@ const ComplaintChargerList = () => {
     }, [getListComplaintsCharger]);
 
     return (
-        <div style={{"marginTop": "25px", "marginRight": "5px"}} className="flex-fill">
+        <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
                 className="btn btn-primary"

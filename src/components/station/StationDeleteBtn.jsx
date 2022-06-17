@@ -1,21 +1,21 @@
-import React, {useCallback, useContext} from "react";
 import {useTranslation} from "react-i18next";
-import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
+import React, {useCallback, useContext} from "react";
+import AuthContext from "../../context/auth.context";
 
-const ComplaintStationDeleteButton = ({complaintId}) => {
+const StationDeleteBtn = ({name}) => {
     const {t} = useTranslation();
     const {request} = useHttp();
-    const {token} = useContext(AuthContext);
+    const {token, email} = useContext(AuthContext);
 
     const onDelete = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/moderators/delete/complaints/of/stations/${complaintId}`, "DELETE", null, {
+            return await request(`http://localhost:8080/api/v1/stations/${name}/delete/by/station/users/${email}`, "DELETE", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
         }
-    }, [request, complaintId, token]);
+    }, [request, name, token, email]);
 
     return (
         <button
@@ -28,4 +28,4 @@ const ComplaintStationDeleteButton = ({complaintId}) => {
     );
 }
 
-export default ComplaintStationDeleteButton;
+export default StationDeleteBtn;

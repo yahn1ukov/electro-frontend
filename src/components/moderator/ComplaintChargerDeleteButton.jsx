@@ -10,8 +10,8 @@ const ComplaintChargerDeleteButton = ({complaintId}) => {
 
     const onDelete = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/moderator/delete/complaint/charger/${complaintId}`, "DELETE", null, {
-                Authorization: `Bearer ${token}`
+            return await request(`http://localhost:8080/api/v1/moderators/delete/complaints/of/chargers/${complaintId}`, "DELETE", null, {
+                Authorization: `${token}`
             });
         } catch (e) {
         }

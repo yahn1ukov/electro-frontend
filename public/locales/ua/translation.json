@@ -6,7 +6,9 @@
       "partnership": "Подати на партнерство"
     },
     "isAuthentication": {
-      "leave": "Покинути"
+      "leave": "Покинути",
+      "partnership": "Заявки на співпрацю",
+      "users": "Користувачі"
     }
   },
   "form": {
@@ -34,11 +36,19 @@
     },
     "yup": {
       "required": "Обов'язкове поле"
+    },
+    "message": {
+      "success": "Успішно",
+      "loading": "Завантаження...",
+      "error": "Помилка"
     }
   },
   "buttons": {
     "refresh": "Оновити",
-    "delete": "Видалити"
+    "delete": "Видалити",
+    "block": "Заблокувати",
+    "unblock": "Розблокувати",
+    "submit": "Прийняти"
   },
   "complaint": {
     "warnings": {
@@ -56,9 +66,44 @@
       "description": "Опис"
     }
   },
-  "charger": {
+  "users": {
     "warnings": {
-      "charger": "Немає зарядних станцій"
+      "user": "Користувачів немає",
+      "chargerUser": "Користувачів зарядних станцій немає",
+      "stationUser": "Користувачів СТО немає"
+    },
+    "elements": {
+      "fullName": "Повне ім'я",
+      "email": "Електронна пошта",
+      "role": "Роль",
+      "createdAt": "Створенний",
+      "company": "Компанія"
     }
+  },
+  "maintenance": {
+    "warnings": {
+      "charger": "Немає зарядних станцій",
+      "station": "Немає СТО"
+    }
+  },
+  "elements": {
+    "country": "Країна",
+    "street": "Вулиця",
+    "zipCode": "Поштовий індекс",
+    "company": "Компанія",
+    "code": "Код",
+    "name": "Назва",
+    "time": "Час",
+    "price": "Ціна",
+    "free": "Безкоштовно",
+    "powerFast": "Швидко",
+    "powerLowe": "Повільно",
+    "createdAt": "Створено",
+    "typeConnector": "Тип з'єднувача",
+    "cars": "Електромобілі",
+    "places": "Місць",
+    "allPlaces": "Усього",
+    "freePlaces": "Вільно"
   }
+}
 }

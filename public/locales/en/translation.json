@@ -6,7 +6,9 @@
       "partnership": "Apply for partnership"
     },
     "isAuthentication": {
-      "leave": "Leave"
+      "leave": "Leave",
+      "partnership": "Applications for cooperation",
+      "users": "Users"
     }
   },
   "form": {
@@ -34,11 +36,19 @@
     },
     "yup": {
       "required": "Required field"
+    },
+    "message": {
+      "success": "Success",
+      "loading": "Loading...",
+      "error": "Error"
     }
   },
   "buttons": {
     "refresh": "Refresh",
-    "delete": "Delete"
+    "delete": "Delete",
+    "block": "Block",
+    "unblock": "Unblock",
+    "submit": "Submit"
   },
   "complaint": {
     "warnings": {
@@ -56,9 +66,43 @@
       "description": "Description"
     }
   },
-  "charger": {
+  "users": {
     "warnings": {
-      "charger": "No charging stations"
+      "user": "No users",
+      "chargerUser": "No charger users",
+      "stationUser": "No station users"
+    },
+    "elements": {
+      "fullName": "Full name",
+      "email": "Email",
+      "role": "Role",
+      "createdAt": "Created",
+      "company": "Company"
+    }
+  },
+  "maintenance": {
+    "warnings": {
+      "charger": "No charging stations",
+      "station": "No station service"
+    },
+    "elements": {
+      "country": "Country",
+      "street": "Street",
+      "zipCode": "Zip code",
+      "company": "Company",
+      "code": "Code",
+      "name": "Name",
+      "time": "Time",
+      "price": "Price",
+      "free": "Free",
+      "powerFast": "Fast",
+      "powerLowe": "Low",
+      "createdAt": "Created",
+      "typeConnector": "Type connector",
+      "cars": "Cars",
+      "places": "Places",
+      "allPlaces": "All",
+      "freePlaces": "Free"
     }
   }
 }

@@ -1,24 +1,19 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {AdminPage, ChargerUserPage, StationUserPage} from "../pages";
-import {useAuth, useHttp} from "../../hooks";
+import {StationUserPage} from "../pages";
+import {useAuth} from "../../hooks";
 
 const Navbar = ({isAuthentication, role}) => {
     const {t, i18n} = useTranslation();
-    const {request} = useHttp();
     const {logout} = useAuth();
 
     const changeLanguageHandler = (language) => {
         i18n.changeLanguage(language);
     }
 
-    const onLeave = async () => {
-        try {
-            await request("http://localhost:8080/api/v1/auth/logout", "POST", null);
-            logout();
-        } catch (e) {
-        }
+    const onLeave = () => {
+        logout();
     }
 
     return (
@@ -47,6 +42,10 @@ const Navbar = ({isAuthentication, role}) => {
                         {
                             isAuthentication ?
                                 <>
+                                    <li className="nav-item">
+                                        <Link className="nav-link"
+                                              to="/">{t("navbar.isAuthentication.users")}</Link>
+                                    </li>
                                     <WhatIsUser role={role}/>
                                     <li className="nav-item" onClick={onLeave}>
                                         <span className="nav-link">{t("navbar.isAuthentication.leave")}</span>
@@ -54,8 +53,7 @@ const Navbar = ({isAuthentication, role}) => {
                                 </> :
                                 <>
                                     <li className="nav-item">
-                                        <Link className="nav-link active"
-                                              aria-current="page"
+                                        <Link className="nav-link"
                                               to="/">{t("navbar.isNotAuthentication.login")}</Link>
                                     </li>
                                     <li className="nav-item">
@@ -76,14 +74,19 @@ const Navbar = ({isAuthentication, role}) => {
 }
 
 const WhatIsUser = ({role}) => {
+    const {t} = useTranslation();
+
     if (role === "CHARGER") {
-        return <ChargerUserPage/>;
+        return null;
     } else if (role === "SERVICE") {
         return <StationUserPage/>;
     } else if (role === "MODERATOR") {
         return null;
     } else {
-        return <AdminPage/>;
+        return <li className="nav-item">
+            <Link className="nav-link"
+                  to="/no-verification/users">{t("navbar.isAuthentication.partnership")}</Link>
+        </li>;
     }
 }
 

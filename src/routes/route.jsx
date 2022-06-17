@@ -1,23 +1,25 @@
 import {Route, Routes} from "react-router-dom";
 import {
-    AdminPage,
     ChargerUserPage,
     LoginPage,
     ModeratorPage,
+    NoVerificationUsersPage,
     PartnershipPage,
     RegistrationPage,
-    StationUserPage
+    StationUserPage,
+    VerificationUsersPage
 } from "../components/pages";
 
 const useRoutes = (isAuthentication, role) => (
     <Routes>
         <Route exact path="/" element={isAuthentication ? <WhatIsUser role={role}/> : <LoginPage/>}/>
         {
-            !isAuthentication &&
-            <>
-                <Route path="/registration" element={<RegistrationPage/>}/>
-                <Route path="/apply/partnership" element={<PartnershipPage/>}/>
-            </>
+            isAuthentication && role === "ADMIN" ?
+                <Route path="/no-verification/users" element={<NoVerificationUsersPage/>}/> :
+                <>
+                    <Route path="/registration" element={<RegistrationPage/>}/>
+                    <Route path="/apply/partnership" element={<PartnershipPage/>}/>
+                </>
         }
     </Routes>
 );
@@ -30,7 +32,7 @@ const WhatIsUser = ({role}) => {
     } else if (role === "MODERATOR") {
         return <ModeratorPage/>;
     } else {
-        return <AdminPage/>;
+        return <VerificationUsersPage/>;
     }
 }
 

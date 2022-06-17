@@ -2,10 +2,12 @@ import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
-import React from "react";
+import React, {useState} from "react";
 
 const StationPartnershipForm = () => {
-    const {request, clearError} = useHttp();
+    const [success, setSuccess] = useState("");
+    const [error, setError] = useState("");
+    const {request, clearError, loading} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {email: "", company: "", password: ""};
@@ -13,7 +15,9 @@ const StationPartnershipForm = () => {
     const onSubmit = async (values) => {
         try {
             await request("http://localhost:8080/api/v1/auth/register/station/partner", "POST", {...values});
+            setSuccess(t("form.message.success"));
         } catch (e) {
+            setError(t("form.message.error"));
         }
     }
 
@@ -31,6 +35,24 @@ const StationPartnershipForm = () => {
                 <h3 className="form-title">
                     <span className="form-title-text">{t("form.name.partnership.station")}</span>
                 </h3>
+                {
+                    success &&
+                    <p style={{textAlign: "center", border: "1px solid green", borderRadius: "5px"}}>
+                        <span style={{color: "green"}}>{success}</span>
+                    </p>
+                }
+                {
+                    loading &&
+                    <p style={{textAlign: "center", border: "1px solid #ced4da", borderRadius: "5px"}}>
+                        <span style={{color: "#ced4da"}}>{t("form.message.loading")}</span>
+                    </p>
+                }
+                {
+                    error &&
+                    <p style={{textAlign: "center", border: "1px solid red", borderRadius: "5px"}}>
+                        <span style={{color: "red"}}>{error}</span>
+                    </p>
+                }
                 <div className="mb-2">
                     <label htmlFor="inputEmailStation" className="form-label">{t("form.field.email")}</label>
                     <Field

@@ -12,8 +12,8 @@ const ComplaintStationList = () => {
 
     const getListComplaintsStation = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/moderator/get/complaint/station/all", "GET", null, {
-                Authorization: `Bearer ${token}`
+            return await request("http://localhost:8080/api/v1/moderators/get/complaints/of/stations/all", "GET", null, {
+                Authorization: `${token}`
             });
         } catch (e) {
         }
@@ -25,7 +25,7 @@ const ComplaintStationList = () => {
     }, [getListComplaintsStation]);
 
     return (
-        <div style={{"marginTop": "25px", "marginLeft": "5px"}} className="flex-fill">
+        <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
                 className="btn btn-primary"

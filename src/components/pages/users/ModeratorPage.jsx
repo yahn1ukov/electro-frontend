@@ -4,7 +4,7 @@ import ComplaintStationList from "../../moderator/ComplaintStationList";
 
 const ModeratorPage = () => {
     return (
-        <div className="d-flex">
+        <div>
             <ComplaintChargerList/>
             <ComplaintStationList/>
         </div>
