@@ -27,14 +27,17 @@ const ChargerUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-primary"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListOfChargerUsers().then(setListOfChargerUsers)}
-            >
-                {t("buttons.refresh")}
-            </button>
+           <div className="d-flex justify-content-between">
+               <button
+                   type="button"
+                   className="btn btn-primary"
+                   style={{"marginBottom": "10px"}}
+                   onClick={() => getListOfChargerUsers().then(setListOfChargerUsers)}
+               >
+                   {t("buttons.refresh")}
+               </button>
+               <h3>{t("users.title.chargerUsers")}</h3>
+           </div>
             <ul className="list-group">
                 {
                     !loading &&

@@ -29,10 +29,26 @@
     },
     "field": {
       "email": "Електронна пошта",
-      "fName": "Ім'я",
-      "lName": "Прізвище",
+      "firstName": "Ім'я",
+      "lastName": "Прізвище",
       "password": "Пароль",
-      "company": "Назва компанії"
+      "company": "Назва компанії",
+      "role": "Роль",
+      "code": "Код",
+      "country": "Країна",
+      "city": "Місто",
+      "street": "Вулиця",
+      "zipCode": "Поштовий індекс",
+      "latitude": "Широта",
+      "longitude": "Довгота",
+      "isFast": "Швидка",
+      "true": "Так",
+      "false": "Ні",
+      "isPay": "Платна",
+      "price": "Вартість",
+      "typeConnector": "Тип з'єднувача",
+      "timeFrom": "Працює від",
+      "timeTo": "Працює до"
     },
     "yup": {
       "required": "Обов'язкове поле"
@@ -48,7 +64,9 @@
     "delete": "Видалити",
     "block": "Заблокувати",
     "unblock": "Розблокувати",
-    "submit": "Прийняти"
+    "submit": "Прийняти",
+    "backup": "Створити резервне копіювання",
+    "restore": "Відновити резервну копію"
   },
   "complaint": {
     "warnings": {
@@ -78,32 +96,36 @@
       "role": "Роль",
       "createdAt": "Створенний",
       "company": "Компанія"
+    },
+    "title": {
+      "users": "Користувачі",
+      "chargerUsers": "Користувачі зарядних станцій",
+      "stationUsers": "Користувачі СТО"
     }
   },
   "maintenance": {
     "warnings": {
       "charger": "Немає зарядних станцій",
       "station": "Немає СТО"
+    },
+    "elements": {
+      "country": "Країна",
+      "street": "Вулиця",
+      "zipCode": "Поштовий індекс",
+      "company": "Компанія",
+      "code": "Код",
+      "name": "Назва",
+      "time": "Час",
+      "price": "Вартість",
+      "free": "Безкоштовно",
+      "power": "Потужність",
+      "powerFast": "Швидко",
+      "powerLow": "Повільно",
+      "typeConnector": "Тип з'єднувача",
+      "cars": "Електромобілі",
+      "places": "Місць",
+      "allPlaces": "Усього",
+      "freePlaces": "Вільно"
     }
-  },
-  "elements": {
-    "country": "Країна",
-    "street": "Вулиця",
-    "zipCode": "Поштовий індекс",
-    "company": "Компанія",
-    "code": "Код",
-    "name": "Назва",
-    "time": "Час",
-    "price": "Ціна",
-    "free": "Безкоштовно",
-    "powerFast": "Швидко",
-    "powerLowe": "Повільно",
-    "createdAt": "Створено",
-    "typeConnector": "Тип з'єднувача",
-    "cars": "Електромобілі",
-    "places": "Місць",
-    "allPlaces": "Усього",
-    "freePlaces": "Вільно"
   }
-}
 }

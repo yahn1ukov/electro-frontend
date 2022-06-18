@@ -29,10 +29,26 @@
     },
     "field": {
       "email": "Email",
-      "fName": "First name",
-      "lName": "Last name",
+      "firstName": "First name",
+      "lastName": "Last name",
       "password": "Password",
-      "company": "Company"
+      "company": "Company",
+      "role": "Role",
+      "code": "Code",
+      "country": "Country",
+      "city": "City",
+      "street": "Street",
+      "zipCode": "Zip code",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "isFast": "Fast",
+      "true": "Yes",
+      "false": "No",
+      "isPay": "Pay",
+      "price": "Price",
+      "typeConnector": "Type connector",
+      "timeFrom": "Time from",
+      "timeTo": "Time to"
     },
     "yup": {
       "required": "Required field"
@@ -48,7 +64,9 @@
     "delete": "Delete",
     "block": "Block",
     "unblock": "Unblock",
-    "submit": "Submit"
+    "submit": "Submit",
+    "backup": "Create a backup",
+    "restore": "Restore a backup"
   },
   "complaint": {
     "warnings": {
@@ -78,6 +96,11 @@
       "role": "Role",
       "createdAt": "Created",
       "company": "Company"
+    },
+    "title": {
+      "users": "Users",
+      "chargerUsers": "Charger users",
+      "stationUsers": "Station users"
     }
   },
   "maintenance": {
@@ -95,9 +118,9 @@
       "time": "Time",
       "price": "Price",
       "free": "Free",
+      "power": "Power",
       "powerFast": "Fast",
-      "powerLowe": "Low",
-      "createdAt": "Created",
+      "powerLow": "Low",
       "typeConnector": "Type connector",
       "cars": "Cars",
       "places": "Places",

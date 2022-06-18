@@ -27,14 +27,17 @@ const StationUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-primary"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListOfStationUsers().then(setListOfStationUsers)}
-            >
-                {t("buttons.refresh")}
-            </button>
+           <div className="d-flex justify-content-between">
+               <button
+                   type="button"
+                   className="btn btn-primary"
+                   style={{"marginBottom": "10px"}}
+                   onClick={() => getListOfStationUsers().then(setListOfStationUsers)}
+               >
+                   {t("buttons.refresh")}
+               </button>
+               <h3>{t("users.title.stationUsers")}</h3>
+           </div>
             <ul className="list-group">
                 {
                     !loading &&

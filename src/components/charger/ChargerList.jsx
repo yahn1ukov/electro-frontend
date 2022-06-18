@@ -25,7 +25,7 @@ const ChargerList = () => {
     }, [getListOfChargers]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
+        <div style={{"margin": "5xp 0 20px 0"}}>
             <button
                 type="button"
                 className="btn btn-primary"
@@ -47,10 +47,9 @@ const ChargerList = () => {
                                 <span>{t("maintenance.elements.zipCode")}: {charger?.zipCode}</span>
                                 <span>{t("maintenance.elements.code")}: {charger?.code}</span>
                                 <span>{t("maintenance.elements.typeConnector")}: {charger?.typeConnector}</span>
-                                <span>{t("maintenance.elements.power")}: {charger?.isFast ? t("maintenance.elements.fast") : t("maintenance.elements.low")}</span>
+                                <span>{t("maintenance.elements.power")}: {charger?.isFast ? t("maintenance.elements.powerFast") : t("maintenance.elements.powerLow")}</span>
                                 <span>{t("maintenance.elements.price")}: {charger.isPay ? charger?.priceOfPerHour : t("maintenance.elements.free")}</span>
                                 <span>{t("maintenance.elements.time")}: {charger?.timeFrom} - {charger?.timeTo}</span>
-                                <span>{t("maintenance.elements.createdAt")}: {new Date(charger?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
                                 <ChargerDeleteBtn code={charger?.code}/>

@@ -70,7 +70,7 @@ const RegistrationForm = () => {
                     />
                 </div>
                 <div className="mb-2">
-                    <label htmlFor="inputFirstName" className="form-label">{t("form.field.fName")}</label>
+                    <label htmlFor="inputFirstName" className="form-label">{t("form.field.firstName")}</label>
                     <Field
                         type="text"
                         name="firstName"
@@ -85,7 +85,7 @@ const RegistrationForm = () => {
                     />
                 </div>
                 <div className="mb-2">
-                    <label htmlFor="inputLastName" className="form-label">{t("form.field.lName")}</label>
+                    <label htmlFor="inputLastName" className="form-label">{t("form.field.lastName")}</label>
                     <Field
                         type="text"
                         name="lastName"

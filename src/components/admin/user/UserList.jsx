@@ -26,15 +26,18 @@ const UserList = () => {
     }, [getListOfUsers]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-primary"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListOfUsers().then(setListOfUsers)}
-            >
-                {t("buttons.refresh")}
-            </button>
+        <div style={{"marginTop": "5px"}}>
+            <div className="d-flex justify-content-between">
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListOfUsers().then(setListOfUsers)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3>{t("users.title.users")}</h3>
+            </div>
             <ul className="list-group">
                 {
                     !loading &&

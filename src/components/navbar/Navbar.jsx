@@ -1,7 +1,6 @@
 import React from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {StationUserPage} from "../pages";
 import {useAuth} from "../../hooks";
 
 const Navbar = ({isAuthentication, role}) => {
@@ -42,10 +41,6 @@ const Navbar = ({isAuthentication, role}) => {
                         {
                             isAuthentication ?
                                 <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link"
-                                              to="/">{t("navbar.isAuthentication.users")}</Link>
-                                    </li>
                                     <WhatIsUser role={role}/>
                                     <li className="nav-item" onClick={onLeave}>
                                         <span className="nav-link">{t("navbar.isAuthentication.leave")}</span>
@@ -76,18 +71,18 @@ const Navbar = ({isAuthentication, role}) => {
 const WhatIsUser = ({role}) => {
     const {t} = useTranslation();
 
-    if (role === "CHARGER") {
-        return null;
-    } else if (role === "SERVICE") {
-        return <StationUserPage/>;
-    } else if (role === "MODERATOR") {
-        return null;
-    } else {
-        return <li className="nav-item">
-            <Link className="nav-link"
-                  to="/no-verification/users">{t("navbar.isAuthentication.partnership")}</Link>
-        </li>;
-    }
+    return role === "ADMIN" ?
+        <>
+            <li className="nav-item">
+                <Link className="nav-link"
+                      to="/">{t("navbar.isAuthentication.users")}</Link>
+            </li>
+            <li className="nav-item">
+                <Link className="nav-link"
+                      to="/no-verification/users">{t("navbar.isAuthentication.partnership")}</Link>
+            </li>
+        </> :
+        null;
 }
 
 
