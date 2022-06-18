@@ -25,7 +25,7 @@ const StationList = () => {
     }, [getListOfStations]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
+        <div style={{"marginTop": "5xp", "marginBottom": "20px"}}>
             <button
                 type="button"
                 className="btn btn-primary"
@@ -46,11 +46,10 @@ const StationList = () => {
                                 <span>{t("maintenance.elements.street")}: {station?.street}</span>
                                 <span>{t("maintenance.elements.zipCode")}: {station?.zipCode}</span>
                                 <span>{t("maintenance.elements.name")}: {station?.name}</span>
-                                <span>{t("maintenance.elements.cars")}: {station?.carName}, {station?.carModel}</span>
+                                <span>{t("maintenance.elements.cars")}: {station?.carName} {station?.carModel}</span>
                                 <span>{t("maintenance.elements.places")}: {t("maintenance.elements.allPlaces")} - {station?.allPlace}, {t("maintenance.elements.freePlaces")}- {station?.freePlace}</span>
                                 <span>{t("maintenance.elements.price")}: {station?.middlePriceForPerHour}</span>
                                 <span>{t("maintenance.elements.time")}: {station?.timeFrom} - {station?.timeTo}</span>
-                                <span>{t("maintenance.elements.createdAt")}: {new Date(station?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
                                 <StationDeleteBtn name={station?.name}/>

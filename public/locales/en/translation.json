@@ -48,7 +48,12 @@
       "price": "Price",
       "typeConnector": "Type connector",
       "timeFrom": "Time from",
-      "timeTo": "Time to"
+      "timeTo": "Time to",
+      "name": "Name service station",
+      "carName": "Car name",
+      "carModel": "Car model",
+      "allPlace": "All places",
+      "freePlace": "Free places"
     },
     "yup": {
       "required": "Required field"

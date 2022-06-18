@@ -25,7 +25,7 @@ const ChargerList = () => {
     }, [getListOfChargers]);
 
     return (
-        <div style={{"margin": "5xp 0 20px 0"}}>
+        <div style={{"marginTop": "5xp", "marginBottom": "20px"}}>
             <button
                 type="button"
                 className="btn btn-primary"

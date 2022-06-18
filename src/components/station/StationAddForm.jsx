@@ -4,30 +4,31 @@ import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {Field, Form, Formik} from "formik";
 
-const ChargerAddForm = () => {
+const StationAddForm = () => {
     const {token, email} = useContext(AuthContext);
     const {request} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {
-        code: "",
+        name: "",
         country: "",
         city: "",
         street: "",
         zipCode: 0,
         latitude: 0,
         longitude: 0,
-        isFast: false,
-        isPay: false,
-        priceOfPerHour: 0,
-        typeConnector: "",
+        carName: "",
+        carModel: "",
+        allPlace: 0,
+        freePlace: 0,
+        middlePriceForPerHour: 0,
         timeFrom: "",
         timeTo: ""
     };
 
     const onSubmit = useCallback(async (values) => {
         try {
-            await request(`http://localhost:8080/api/v1/chargers/create/by/charger/users/${email}`, "POST", {...values}, {
+            await request(`http://localhost:8080/api/v1/stations/create/by/station/users/${email}`, "POST", {...values}, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -40,17 +41,18 @@ const ChargerAddForm = () => {
             onSubmit={(values, {resetForm}) => {
                 onSubmit(values);
                 resetForm({
-                    code: "",
+                    name: "",
                     country: "",
                     city: "",
                     street: "",
                     zipCode: 0,
                     latitude: 0,
                     longitude: 0,
-                    isFast: false,
-                    isPay: false,
-                    priceOfPerHour: 0,
-                    typeConnector: "",
+                    carName: "",
+                    carModel: "",
+                    allPlace: 0,
+                    freePlace: 0,
+                    middlePriceForPerHour: 0,
                     timeFrom: "",
                     timeTo: ""
                 });
@@ -58,12 +60,12 @@ const ChargerAddForm = () => {
         >
             <Form className="d-flex flex-column" style={{marginTop: "25px"}}>
                 <div className="mb-2">
-                    <label htmlFor="inputCode" className="form-label">{t("form.field.code")}</label>
+                    <label htmlFor="inputName" className="form-label">{t("form.field.name")}</label>
                     <Field
                         type="text"
-                        name="code"
+                        name="name"
                         className="form-control"
-                        id="inputCode"
+                        id="inputName"
                         required
                     />
                 </div>
@@ -135,55 +137,57 @@ const ChargerAddForm = () => {
                 </div>
                 <div className="mb-2 d-flex">
                     <div style={{marginRight: "5px"}} className="flex-fill">
-                        <label htmlFor="inputIsFast" className="form-label">{t("form.field.isFast")}</label>
+                        <label htmlFor="inputCarName" className="form-label">{t("form.field.carName")}</label>
                         <Field
-                            as="select"
-                            name="isFast"
-                            className="form-select"
-                            id="inputIsFast"
+                            type="text"
+                            name="carName"
+                            className="form-control"
+                            id="inputCarName"
                             required
-                        >
-                            <option value={true}>{t("form.field.true")}</option>
-                            <option value={false}>{t("form.field.false")}</option>
-                        </Field>
+                        />
                     </div>
-                    <div className="flex-fill">
-                        <label htmlFor="inputIsPay" className="form-label">{t("form.field.isPay")}</label>
+                    <div style={{marginRight: "5px"}} className="flex-fill">
+                        <label htmlFor="inputCarModel" className="form-label">{t("form.field.carModel")}</label>
                         <Field
-                            as="select"
-                            name="isPay"
-                            className="form-select"
-                            id="inputIsPay"
+                            type="text"
+                            name="carModel"
+                            className="form-control"
+                            id="inputCarModel"
                             required
-                        >
-                            <option value={true}>{t("form.field.true")}</option>
-                            <option value={false}>{t("form.field.false")}</option>
-                        </Field>
+                        />
                     </div>
                 </div>
                 <div className="mb-2 d-flex">
-                    <div className="flex-fill" style={{marginRight: "5px"}}>
-                        <label htmlFor="inputPriceOfPerHour"
-                               className="form-label">{t("form.field.price")}</label>
+                    <div style={{marginRight: "5px"}}>
+                        <label htmlFor="inputAllPlace" className="form-label">{t("form.field.allPlace")}</label>
                         <Field
                             type="number"
-                            name="priceOfPerHour"
+                            name="allPlace"
                             className="form-control"
-                            id="inputPriceOfPerHour"
+                            id="inputAllPlace"
                             required
                         />
                     </div>
-                    <div className="flex-fill">
-                        <label htmlFor="inputTypeConnector"
-                               className="form-label">{t("form.field.typeConnector")}</label>
+                    <div>
+                        <label htmlFor="inputFreePlace" className="form-label">{t("form.field.freePlace")}</label>
                         <Field
-                            type="text"
-                            name="typeConnector"
+                            type="number"
+                            name="freePlace"
                             className="form-control"
-                            id="inputTypeConnector"
+                            id="inputFreePlace"
                             required
                         />
                     </div>
+                </div>
+                <div className="mb-2">
+                    <label htmlFor="inputMiddlePriceForPerHour" className="form-label">{t("form.field.price")}</label>
+                    <Field
+                        type="number"
+                        name="middlePriceForPerHour"
+                        className="form-control"
+                        id="inputMiddlePriceForPerHour"
+                        required
+                    />
                 </div>
                 <div className="mb-2 d-flex">
                     <div style={{marginRight: "5px"}}>
@@ -220,4 +224,4 @@ const ChargerAddForm = () => {
     );
 }
 
-export default ChargerAddForm;
+export default StationAddForm;
