@@ -86,7 +86,8 @@
       "city": "City",
       "street": "Street",
       "zipCode": "Zip code",
-      "description": "Description"
+      "description": "Description",
+      "createdAt": "Created"
     }
   },
   "users": {

@@ -44,12 +44,11 @@ const ComplaintChargerList = () => {
                                 <span>{t("complaint.elements.user")}: {complaint?.fullName}</span>
                                 <span>{t("complaint.elements.company")}: {complaint?.company}</span>
                                 <span>{t("complaint.elements.name")}: {complaint?.name}</span>
-                                <span>{t("complaint.elements.country")}: {complaint?.country}</span>
-                                <span>{t("complaint.elements.city")}: {complaint?.city}</span>
+                                <span>{t("complaint.elements.country")}: {complaint?.country}, {complaint?.city}</span>
                                 <span>{t("complaint.elements.street")}: {complaint?.street}</span>
                                 <span>{t("complaint.elements.zipCode")}: {complaint?.zipCode}</span>
                                 <span>{t("complaint.elements.description")}: {complaint?.description}</span>
-                                <span>{new Date(complaint?.createdAt).toLocaleDateString()}</span>
+                                <span>{t("complaint.elements.createdAt")}: {new Date(complaint?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
                                 <ComplaintChargerDeleteButton complaintId={complaint?.id}/>

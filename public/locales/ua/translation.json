@@ -86,7 +86,8 @@
       "city": "Місто",
       "street": "Вулиця",
       "zipCode": "Поштовий індекс",
-      "description": "Опис"
+      "description": "Опис",
+      "createdAt": "Створено"
     }
   },
   "users": {
