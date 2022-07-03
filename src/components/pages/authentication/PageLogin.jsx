@@ -1,12 +1,12 @@
 import React from "react";
-import {FormRegistration} from "../../forms";
+import {FormLogin} from "../../forms";
 
-const RegistrationPage = () => {
+const PageLogin = () => {
     return (
         <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
-            <FormRegistration/>
+            <FormLogin/>
         </div>
     );
 }
 
-export default RegistrationPage;
+export default PageLogin;

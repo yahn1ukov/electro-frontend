@@ -1,12 +1,14 @@
-import React, {useCallback, useContext} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {Field, Form, Formik} from "formik";
+import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const ChargerAddForm = () => {
-    const {token, email} = useContext(AuthContext);
-    const {request} = useHttp();
+    const [success, setSuccess] = useState("");
+    const {token, id} = useContext(AuthContext);
+    const {request, loading, error, clearError} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {
@@ -27,37 +29,24 @@ const ChargerAddForm = () => {
 
     const onSubmit = useCallback(async (values) => {
         try {
-            await request(`http://localhost:8080/api/v1/chargers/create/by/charger/users/${email}`, "POST", {...values}, {
+            const data = await request(`http://localhost:8080/api/v1/chargers/users/${id}/create`, "POST", {...values}, {
                 Authorization: `${token}`
             });
+            setSuccess(data.message);
         } catch (e) {
         }
-    }, [email, token, request]);
+    }, [id, token, request]);
 
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={(values, {resetForm}) => {
-                onSubmit(values);
-                resetForm({
-                    code: "",
-                    country: "",
-                    city: "",
-                    street: "",
-                    zipCode: 0,
-                    latitude: 0,
-                    longitude: 0,
-                    isFast: false,
-                    isPay: false,
-                    priceOfPerHour: 0,
-                    typeConnector: "",
-                    timeFrom: "",
-                    timeTo: ""
-                });
-            }}
+            onSubmit={onSubmit}
         >
-            <Form className="d-flex flex-column" style={{marginTop: "25px"}}>
-                <div className="mb-2">
+            <Form className="form" style={{marginTop: "25px"}}>
+                {success && <MessageSuccess success={success}/>}
+                {loading && <MessageLoading/>}
+                {error && <MessageError error={error}/>}
+                <div className="form-group">
                     <label htmlFor="inputCode" className="form-label">{t("form.field.code")}</label>
                     <Field
                         type="text"
@@ -67,8 +56,8 @@ const ChargerAddForm = () => {
                         required
                     />
                 </div>
-                <div className="mb-2 d-flex">
-                    <div style={{marginRight: "5px"}}>
+                <div className="form-subgroup">
+                    <div className="form-group">
                         <label htmlFor="inputCountry" className="form-label">{t("form.field.country")}</label>
                         <Field
                             type="text"
@@ -78,7 +67,7 @@ const ChargerAddForm = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="inputCity" className="form-label">{t("form.field.city")}</label>
                         <Field
                             type="text"
@@ -89,8 +78,8 @@ const ChargerAddForm = () => {
                         />
                     </div>
                 </div>
-                <div className="mb-2 d-flex">
-                    <div style={{marginRight: "5px"}}>
+                <div className="form-subgroup">
+                    <div className="form-group">
                         <label htmlFor="inputStreet" className="form-label">{t("form.field.street")}</label>
                         <Field
                             type="text"
@@ -100,7 +89,7 @@ const ChargerAddForm = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="inputZipCode" className="form-label">{t("form.field.zipCode")}</label>
                         <Field
                             type="number"
@@ -111,8 +100,8 @@ const ChargerAddForm = () => {
                         />
                     </div>
                 </div>
-                <div className="mb-2 d-flex">
-                    <div style={{marginRight: "5px"}}>
+                <div className="form-subgroup">
+                    <div className="form-group">
                         <label htmlFor="inputLatitude" className="form-label">{t("form.field.latitude")}</label>
                         <Field
                             type="number"
@@ -122,7 +111,7 @@ const ChargerAddForm = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="inputLongitude" className="form-label">{t("form.field.longitude")}</label>
                         <Field
                             type="number"
@@ -133,13 +122,13 @@ const ChargerAddForm = () => {
                         />
                     </div>
                 </div>
-                <div className="mb-2 d-flex">
-                    <div style={{marginRight: "5px"}} className="flex-fill">
+                <div className="form-subgroup">
+                    <div className="form-group" style={{"flex": "1"}}>
                         <label htmlFor="inputIsFast" className="form-label">{t("form.field.isFast")}</label>
                         <Field
                             as="select"
                             name="isFast"
-                            className="form-select"
+                            className="form-control"
                             id="inputIsFast"
                             required
                         >
@@ -147,12 +136,12 @@ const ChargerAddForm = () => {
                             <option value={false}>{t("form.field.false")}</option>
                         </Field>
                     </div>
-                    <div className="flex-fill">
+                    <div className="form-group" style={{"flex": "1"}}>
                         <label htmlFor="inputIsPay" className="form-label">{t("form.field.isPay")}</label>
                         <Field
                             as="select"
                             name="isPay"
-                            className="form-select"
+                            className="form-control"
                             id="inputIsPay"
                             required
                         >
@@ -161,8 +150,8 @@ const ChargerAddForm = () => {
                         </Field>
                     </div>
                 </div>
-                <div className="mb-2 d-flex">
-                    <div className="flex-fill" style={{marginRight: "5px"}}>
+                <div className="form-subgroup">
+                    <div className="form-group">
                         <label htmlFor="inputPriceOfPerHour"
                                className="form-label">{t("form.field.price")}</label>
                         <Field
@@ -173,7 +162,7 @@ const ChargerAddForm = () => {
                             required
                         />
                     </div>
-                    <div className="flex-fill">
+                    <div className="form-group">
                         <label htmlFor="inputTypeConnector"
                                className="form-label">{t("form.field.typeConnector")}</label>
                         <Field
@@ -185,8 +174,8 @@ const ChargerAddForm = () => {
                         />
                     </div>
                 </div>
-                <div className="mb-2 d-flex">
-                    <div style={{marginRight: "5px"}}>
+                <div className="form-subgroup">
+                    <div className="form-group">
                         <label htmlFor="inputTimeFrom" className="form-label">{t("form.field.timeFrom")}</label>
                         <Field
                             type="text"
@@ -196,7 +185,7 @@ const ChargerAddForm = () => {
                             required
                         />
                     </div>
-                    <div>
+                    <div className="form-group">
                         <label htmlFor="inputTimeTo" className="form-label">{t("form.field.timeTo")}</label>
                         <Field
                             type="text"
@@ -207,14 +196,13 @@ const ChargerAddForm = () => {
                         />
                     </div>
                 </div>
-                <div className="d-flex justify-content-center">
-                    <button
-                        className="btn btn-primary"
-                        type="submit"
-                    >
-                        {t("buttons.submit")}
-                    </button>
-                </div>
+                <button
+                    className="btn btn-submit"
+                    type="submit"
+                    onClick={clearError}
+                >
+                    {t("buttons.submit")}
+                </button>
             </Form>
         </Formik>
     );

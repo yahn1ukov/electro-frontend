@@ -12,7 +12,7 @@ const ComplaintStationList = () => {
 
     const getListComplaintsStation = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/moderators/get/complaints/of/stations/all", "GET", null, {
+            return await request("http://localhost:8080/api/v1/moderators/complaints/stations", "GET", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -28,34 +28,42 @@ const ComplaintStationList = () => {
         <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-submit"
                 style={{"marginBottom": "10px"}}
                 onClick={() => getListComplaintsStation().then(setListComplaintsOfStation)}
             >
                 {t("buttons.refresh")}
             </button>
-            <ul className="list-group">
+            <ul className="list">
                 {
                     !loading &&
                     listComplaintsOfStation.length ?
                         listComplaintsOfStation.map(complaint => <li key={complaint?.id}
-                                                                     className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex flex-column">
-                                <span>{t("complaint.elements.user")}: {complaint?.fullName}</span>
-                                <span>{t("complaint.elements.company")}: {complaint?.company}</span>
-                                <span>{t("complaint.elements.name")}: {complaint?.name}</span>
-                                <span>{t("complaint.elements.country")}: {complaint?.country}, {complaint?.city}</span>
-                                <span>{t("complaint.elements.street")}: {complaint?.street}</span>
-                                <span>{t("complaint.elements.zipCode")}: {complaint?.zipCode}</span>
-                                <span>{t("complaint.elements.description")}: {complaint?.description}</span>
-                                <span>{t("complaint.elements.createdAt")}: {new Date(complaint?.createdAt).toLocaleDateString()}</span>
+                                                                     className="list-item">
+                            <div className="list-item-group">
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.user")}: {complaint?.fullName}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.company")}: {complaint?.company}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.name")}: {complaint?.name}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.country")}: {complaint?.country}, {complaint?.city}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.street")}: {complaint?.street}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.zipCode")}: {complaint?.zipCode}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.description")}: {complaint?.description}</span>
+                                <span
+                                    className="list-item-group-text">{t("complaint.elements.createdAt")}: {new Date(complaint?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <ComplaintStationDeleteButton complaintId={complaint?.id}/>
+                                <ComplaintStationDeleteButton id={complaint?.id}/>
                             </div>
                         </li>) :
-                        <li className="list-group-item d-flex justify-content-center align-items-center">
-                            {t("complaint.warnings.station")}
+                        <li className="list-item">
+                            <span className="list-item-warning">{t("complaint.warnings.station")}</span>
                         </li>
                 }
             </ul>

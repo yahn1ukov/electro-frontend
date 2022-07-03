@@ -58,8 +58,8 @@ const ChargerUserList = () => {
                                 <ChargerUserDeleteBtn id={chargerUser?.id}/>
                             </div>
                         </li>) :
-                        <li className="list-group-item d-flex justify-content-center align-items-center">
-                            {t("users.warnings.chargerUser")}
+                        <li className="list-item">
+                            <span className="list-item-warning">{t("users.warnings.chargerUser")}</span>
                         </li>
                 }
             </ul>

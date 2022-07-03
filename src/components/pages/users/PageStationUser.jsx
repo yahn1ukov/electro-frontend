@@ -3,13 +3,13 @@ import StationList from "../../station/StationList";
 import StationAddForm from "../../station/StationAddForm";
 import StationChangeFreePlaces from "../../station/StationChangeFreePlaces";
 
-const StationUserPage = () => {
+const PageStationUser = () => {
     return (
         <div>
-            <div className="d-flex justify-content-center">
+            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
                 <StationAddForm/>
             </div>
-            <div className="d-flex justify-content-center">
+            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
                 <StationChangeFreePlaces/>
             </div>
             <StationList/>
@@ -17,4 +17,4 @@ const StationUserPage = () => {
     );
 }
 
-export default StationUserPage;
+export default PageStationUser;

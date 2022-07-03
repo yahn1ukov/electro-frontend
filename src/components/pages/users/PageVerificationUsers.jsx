@@ -6,7 +6,7 @@ import UserChangeRole from "../../admin/user/UserChangeRole";
 import ChargerUserList from "../../admin/chargerUser/ChargerUserList";
 import StationUserList from "../../admin/stationUser/StationUserList";
 
-const VerificationUsersPage = () => {
+const PageVerificationUsers = () => {
     return (
         <div>
             <div style={{"display": "flex", "justifyContent": "end", "alignItems": "center", "marginTop": "25px"}}>
@@ -23,4 +23,4 @@ const VerificationUsersPage = () => {
     );
 }
 
-export default VerificationUsersPage;
+export default PageVerificationUsers;

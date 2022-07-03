@@ -1,36 +1,38 @@
-import React, {useCallback, useContext} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {Field, Form, Formik} from "formik";
+import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const StationChangeFreePlaces = () => {
+    const [success, setSuccess] = useState("");
     const {token} = useContext(AuthContext);
-    const {request} = useHttp();
+    const {request, loading, error, clearError} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {name: "", freePlace: 0};
 
     const onSubmit = useCallback(async (values) => {
         try {
-            await request(`http://localhost:8080/api/v1/stations/${values.name}/change/free-place`, "PATCH", {freePlace: values.freePlace}, {
+            const data = await request(`http://localhost:8080/api/v1/stations/${values.name}/free-place`, "PATCH", {freePlace: values.freePlace}, {
                 Authorization: `${token}`
             });
+            setSuccess(data.message);
         } catch (e) {
-        } finally {
         }
     }, [token, request]);
 
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={(values, {resetForm}) => {
-                onSubmit(values);
-                resetForm({name: "", freePlace: 0});
-            }}
+            onSubmit={onSubmit}
         >
-            <Form className="d-flex align-items-end" style={{marginTop: "20px"}}>
-                <div style={{marginRight: "5px"}}>
+            <Form className="form" style={{marginTop: "20px"}}>
+                {success && <MessageSuccess success={success}/>}
+                {loading && <MessageLoading/>}
+                {error && <MessageError error={error}/>}
+                <div className="form-group">
                     <label htmlFor="inputName" className="form-label">{t("form.field.name")}</label>
                     <Field
                         type="text"
@@ -40,7 +42,7 @@ const StationChangeFreePlaces = () => {
                         required
                     />
                 </div>
-                <div style={{marginRight: "5px"}}>
+                <div className="form-group">
                     <label htmlFor="inputFreePlace" className="form-label">{t("form.field.freePlace")}</label>
                     <Field
                         type="number"
@@ -50,14 +52,13 @@ const StationChangeFreePlaces = () => {
                         required
                     />
                 </div>
-                <div>
-                    <button
-                        className="btn btn-primary"
-                        type="submit"
-                    >
-                        {t("buttons.submit")}
-                    </button>
-                </div>
+                <button
+                    className="btn btn-submit"
+                    type="submit"
+                    onClick={clearError}
+                >
+                    {t("buttons.submit")}
+                </button>
             </Form>
         </Formik>
     );

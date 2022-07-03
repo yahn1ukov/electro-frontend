@@ -3,19 +3,19 @@ import {useTranslation} from "react-i18next";
 import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
 
-const ComplaintStationDeleteButton = ({complaintId}) => {
+const ComplaintStationDeleteButton = ({id}) => {
     const {t} = useTranslation();
     const {request} = useHttp();
     const {token} = useContext(AuthContext);
 
     const onDelete = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/moderators/delete/complaints/of/stations/${complaintId}`, "DELETE", null, {
+            await request(`http://localhost:8080/api/v1/moderators/complaints/stations/${id}/delete`, "DELETE", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
         }
-    }, [request, complaintId, token]);
+    }, [request, id, token]);
 
     return (
         <button

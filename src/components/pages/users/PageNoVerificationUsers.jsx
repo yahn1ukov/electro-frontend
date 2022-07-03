@@ -2,7 +2,7 @@ import React from "react";
 import ChargerUserNoVerificationList from "../../admin/chargerUser/ChargerUserNoVerificationList";
 import StationUserNoVerificationList from "../../admin/stationUser/StationUserNoVerificationList";
 
-const NoVerificationUsersPage = () => {
+const PageNoVerificationUsers = () => {
     return (
         <div>
             <ChargerUserNoVerificationList/>
@@ -11,4 +11,4 @@ const NoVerificationUsersPage = () => {
     );
 }
 
-export default NoVerificationUsersPage;
+export default PageNoVerificationUsers;

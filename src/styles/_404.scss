@@ -1,0 +1,14 @@
+@import "_colors";
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &-status {
+    font-size: 150px;
+    font-weight: 600;
+    color: $primary;
+  }
+}

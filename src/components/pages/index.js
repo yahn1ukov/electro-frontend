@@ -1,19 +1,21 @@
-import LoginPage from "./authentication/LoginPage";
-import RegistrationPage from "./authentication/RegistrationPage";
-import PartnershipPage from "./authentication/PartnershipPage";
-import VerificationUsersPage from "./users/VerificationUsersPage";
-import ChargerUserPage from "./users/ChargerUserPage";
-import StationUserPage from "./users/StationUserPage";
-import ModeratorPage from "./users/ModeratorPage";
-import NoVerificationUsersPage from "./users/NoVerificationUsersPage";
+import PageLogin from "./authentication/PageLogin";
+import PageRegistration from "./authentication/PageRegistration";
+import PagePartnership from "./authentication/PagePartnership";
+import PageVerificationUsers from "./users/PageVerificationUsers";
+import PageChargerUser from "./users/PageChargerUser";
+import PageStationUser from "./users/PageStationUser";
+import PageModerator from "./users/PageModerator";
+import PageNoVerificationUsers from "./users/PageNoVerificationUsers";
+import Page404 from "./Page404";
 
 export {
-    LoginPage,
-    RegistrationPage,
-    PartnershipPage,
-    VerificationUsersPage,
-    ChargerUserPage,
-    StationUserPage,
-    ModeratorPage,
-    NoVerificationUsersPage
+    PageLogin,
+    PageRegistration,
+    PagePartnership,
+    PageVerificationUsers,
+    PageChargerUser,
+    PageStationUser,
+    PageModerator,
+    PageNoVerificationUsers,
+    Page404
 };

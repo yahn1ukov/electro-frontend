@@ -28,6 +28,14 @@
     }
   }
 
+  &-subgroup {
+    display: flex;
+
+    & > *:not(:last-child) {
+      margin-right: 5px;
+    }
+  }
+
   &-label {
     font-size: 15px;
     color: $primary;
@@ -36,7 +44,6 @@
   &-control {
     border: 2px solid rgba($grey, 0.75);
     border-radius: 5px;
-    width: 225px;
     height: 35px;
     padding: 0 10px;
     transition: all 0.3s ease 0s;
