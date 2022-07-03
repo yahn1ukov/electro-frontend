@@ -13,7 +13,7 @@ const UserList = () => {
 
     const getListOfUsers = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/get/users/all", "GET", null, {
+            return await request("http://localhost:8080/api/v1/admins/users", "GET", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -27,36 +27,37 @@ const UserList = () => {
 
     return (
         <div style={{"marginTop": "5px"}}>
-            <div className="d-flex justify-content-between">
+            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
                 <button
                     type="button"
-                    className="btn btn-primary"
+                    className="btn btn-submit"
                     style={{"marginBottom": "10px"}}
                     onClick={() => getListOfUsers().then(setListOfUsers)}
                 >
                     {t("buttons.refresh")}
                 </button>
-                <h3>{t("users.title.users")}</h3>
+                <h3 className="list-title">{t("users.title.users")}</h3>
             </div>
-            <ul className="list-group">
+            <ul className="list">
                 {
                     !loading &&
                     listOfUsers.length ?
-                        listOfUsers.map(user => <li key={user?.email}
-                                                    className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex flex-column">
-                                <span>{t("users.elements.fullName")}: {user?.firstName} {user?.lastName}</span>
-                                <span>{t("users.elements.email")}: {user?.email}</span>
-                                <span>{t("users.elements.role")}: {user?.role}</span>
-                                <span>{t("users.elements.createdAt")}: {new Date(user?.createdAt).toLocaleDateString()}</span>
+                        listOfUsers.map(user => <li key={user?.id} className="list-item">
+                            <div className="list-item-group">
+                                <span
+                                    className="list-item-group-text">{t("users.elements.fullName")}: {user?.fullName}</span>
+                                <span className="list-item-group-text">{t("users.elements.email")}: {user?.email}</span>
+                                <span className="list-item-group-text">{t("users.elements.role")}: {user?.role}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(user?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <UserBlockBtn email={user?.email} isNotBlock={user?.isNotBlock}/>
-                                <UserDeleteBtn email={user?.email}/>
+                                <UserBlockBtn id={user?.id} isNotBlock={user?.isNotBlock}/>
+                                <UserDeleteBtn id={user?.id}/>
                             </div>
                         </li>) :
-                        <li className="list-group-item d-flex justify-content-center align-items-center">
-                            {t("users.warnings.user")}
+                        <li className="list-item">
+                            <span className="list-item-warning">{t("users.warnings.user")}</span>
                         </li>
                 }
             </ul>

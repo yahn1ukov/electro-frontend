@@ -1,26 +1,23 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import AuthContext from "../../context/auth.context";
 import {useHttp} from "../../hooks";
 import {useTranslation} from "react-i18next";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
+import {MessageError, MessageLoading} from "../message";
 
-const LoginForm = () => {
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
+const FormLogin = () => {
     const {login} = useContext(AuthContext);
-    const {request, clearError, loading} = useHttp();
+    const {request, clearError, loading, error} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {email: "", password: ""};
 
     const onSubmit = async (values) => {
         try {
-            const data = await request("http://localhost:8080/api/v1/auth/login", "POST", {...values});
-            setSuccess(t("form.message.success"));
-            login(data.id, data.email, data.token, data.role);
+            const data = await request("http://localhost:8080/api/v1/authentication/login", "POST", {...values});
+            login(data.id, data.token, data.role);
         } catch (e) {
-            setError(t("form.message.error"));
         }
     }
 
@@ -33,29 +30,13 @@ const LoginForm = () => {
             })}
             onSubmit={onSubmit}
         >
-            <Form className="d-flex flex-column">
+            <Form className="form">
                 <h3 className="form-title">
                     <span className="form-title-text">{t("form.name.login")}</span>
                 </h3>
-                {
-                    success &&
-                    <p style={{textAlign: "center", border: "1px solid green", borderRadius: "5px"}}>
-                        <span style={{color: "green"}}>{success}</span>
-                    </p>
-                }
-                {
-                    loading &&
-                    <p style={{textAlign: "center", border: "1px solid #ced4da", borderRadius: "5px"}}>
-                        <span style={{color: "#ced4da"}}>{t("form.message.loading")}</span>
-                    </p>
-                }
-                {
-                    error &&
-                    <p style={{textAlign: "center", border: "1px solid red", borderRadius: "5px"}}>
-                        <span style={{color: "red"}}>{error}</span>
-                    </p>
-                }
-                <div className="mb-2">
+                {loading && <MessageLoading/>}
+                {error && <MessageError error={error}/>}
+                <div className="form-group">
                     <label htmlFor="inputEmail" className="form-label">{t("form.field.email")}</label>
                     <Field
                         type="email"
@@ -67,10 +48,10 @@ const LoginForm = () => {
                     <ErrorMessage
                         name="email"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                     <label htmlFor="inputPassword" className="form-label">{t("form.field.password")}</label>
                     <Field
                         type="password"
@@ -82,11 +63,11 @@ const LoginForm = () => {
                     <ErrorMessage
                         name="password"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
                 <button
-                    className="btn btn-primary"
+                    className="btn btn-submit"
                     type="submit"
                     onClick={clearError}
                 >
@@ -97,4 +78,4 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default FormLogin;

@@ -3,21 +3,20 @@ import {useTranslation} from "react-i18next";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 import React, {useState} from "react";
+import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
-const RegistrationForm = () => {
+const FormRegistration = () => {
     const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
-    const {request, clearError, loading} = useHttp();
+    const {request, clearError, loading, error} = useHttp();
     const {t} = useTranslation();
 
     const initialValues = {email: "", firstName: "", lastName: "", password: ""};
 
     const onSubmit = async (values) => {
         try {
-            await request("http://localhost:8080/api/v1/auth/register/user", "POST", {...values});
-            setSuccess(t("form.message.success"));
+            const data = await request("http://localhost:8080/api/v1/authentication/registration/users", "POST", {...values});
+            setSuccess(data.message);
         } catch (e) {
-            setError(t("form.message.error"));
         }
     }
 
@@ -32,29 +31,14 @@ const RegistrationForm = () => {
             })}
             onSubmit={onSubmit}
         >
-            <Form className="d-flex flex-column">
+            <Form className="form">
                 <h3 className="form-title">
                     <span className="form-title-text">{t("form.name.registration")}</span>
                 </h3>
-                {
-                    success &&
-                    <p style={{textAlign: "center", border: "1px solid green", borderRadius: "5px"}}>
-                        <span style={{color: "green"}}>{success}</span>
-                    </p>
-                }
-                {
-                    loading &&
-                    <p style={{textAlign: "center", border: "1px solid #ced4da", borderRadius: "5px"}}>
-                        <span style={{color: "#ced4da"}}>{t("form.message.loading")}</span>
-                    </p>
-                }
-                {
-                    error &&
-                    <p style={{textAlign: "center", border: "1px solid red", borderRadius: "5px"}}>
-                        <span style={{color: "red"}}>{error}</span>
-                    </p>
-                }
-                <div className="mb-2">
+                {success && <MessageSuccess success={success}/>}
+                {loading && <MessageLoading/>}
+                {error && <MessageError error={error}/>}
+                <div className="form-group">
                     <label htmlFor="inputEmail" className="form-label">{t("form.field.email")}</label>
                     <Field
                         type="email"
@@ -66,10 +50,10 @@ const RegistrationForm = () => {
                     <ErrorMessage
                         name="email"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                     <label htmlFor="inputFirstName" className="form-label">{t("form.field.firstName")}</label>
                     <Field
                         type="text"
@@ -81,10 +65,10 @@ const RegistrationForm = () => {
                     <ErrorMessage
                         name="firstName"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                     <label htmlFor="inputLastName" className="form-label">{t("form.field.lastName")}</label>
                     <Field
                         type="text"
@@ -96,10 +80,10 @@ const RegistrationForm = () => {
                     <ErrorMessage
                         name="lastName"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
-                <div className="mb-2">
+                <div className="form-group">
                     <label htmlFor="inputPassword" className="form-label">{t("form.field.password")}</label>
                     <Field
                         type="password"
@@ -111,11 +95,11 @@ const RegistrationForm = () => {
                     <ErrorMessage
                         name="password"
                         component="span"
-                        style={{"color": "red"}}
+                        className="form-error"
                     />
                 </div>
                 <button
-                    className="btn btn-primary"
+                    className="btn btn-submit"
                     type="submit"
                     onClick={clearError}
                 >
@@ -126,4 +110,4 @@ const RegistrationForm = () => {
     );
 }
 
-export default RegistrationForm;
+export default FormRegistration;

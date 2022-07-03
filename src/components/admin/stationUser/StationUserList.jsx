@@ -13,7 +13,7 @@ const StationUserList = () => {
 
     const getListOfStationUsers = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/get/station/users/all", "GET", null, {
+            return await request("http://localhost:8080/api/v1/admins/users/stations", "GET", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -27,36 +27,39 @@ const StationUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-           <div className="d-flex justify-content-between">
-               <button
-                   type="button"
-                   className="btn btn-primary"
-                   style={{"marginBottom": "10px"}}
-                   onClick={() => getListOfStationUsers().then(setListOfStationUsers)}
-               >
-                   {t("buttons.refresh")}
-               </button>
-               <h3>{t("users.title.stationUsers")}</h3>
-           </div>
-            <ul className="list-group">
+            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListOfStationUsers().then(setListOfStationUsers)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("users.title.stationUsers")}</h3>
+            </div>
+            <ul className="list">
                 {
                     !loading &&
                     listOfStationUsers.length ?
-                        listOfStationUsers.map(stationUser => <li key={stationUser?.email}
-                                                                  className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex flex-column">
-                                <span>{t("users.elements.company")}: {stationUser?.company}</span>
-                                <span>{t("users.elements.email")}: {stationUser?.email}</span>
-                                <span>{t("users.elements.role")}: {stationUser?.role}</span>
-                                <span>{t("users.elements.createdAt")}: {new Date(stationUser?.createdAt).toLocaleDateString()}</span>
+                        listOfStationUsers.map(stationUser => <li key={stationUser?.id} className="list-item">
+                            <div className="list-item-group">
+                                <span
+                                    className="list-item-group-text">{t("users.elements.company")}: {stationUser?.company}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.email")}: {stationUser?.email}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.role")}: {stationUser?.role}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(stationUser?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <StationUserBlockBtn email={stationUser?.email} isNotBlock={stationUser?.isNotBlock}/>
-                                <StationUserDeleteBtn email={stationUser?.email}/>
+                                <StationUserBlockBtn id={stationUser?.id} isNotBlock={stationUser?.isNotBlock}/>
+                                <StationUserDeleteBtn id={stationUser?.id}/>
                             </div>
                         </li>) :
-                        <li className="list-group-item d-flex justify-content-center align-items-center">
-                            {t("users.warnings.stationUser")}
+                        <li className="list-item">
+                            <span className="list-item-warning">{t("users.warnings.stationUser")}</span>
                         </li>
                 }
             </ul>

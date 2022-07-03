@@ -10,7 +10,7 @@ const BackupBtn = () => {
 
     const onCreateBackup = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/create/backup/db", "POST", null, {
+            await request("http://localhost:8080/api/v1/admins/db/backup", "POST", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -20,7 +20,7 @@ const BackupBtn = () => {
     return (
         <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-submit"
             onClick={onCreateBackup}
         >
             {t("buttons.backup")}

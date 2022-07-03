@@ -1,10 +1,10 @@
 import React from "react";
-import {LoginForm} from "../../authenticationForms";
+import {FormLogin} from "../../forms";
 
 const LoginPage = () => {
     return (
-        <div className="mt-5 d-flex justify-content-center">
-            <LoginForm/>
+        <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+            <FormLogin/>
         </div>
     );
 }

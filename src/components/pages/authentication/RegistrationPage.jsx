@@ -1,10 +1,10 @@
 import React from "react";
-import {RegistrationForm} from "../../authenticationForms";
+import {FormRegistration} from "../../forms";
 
 const RegistrationPage = () => {
     return (
-        <div className="mt-5 d-flex justify-content-center">
-            <RegistrationForm/>
+        <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+            <FormRegistration/>
         </div>
     );
 }

@@ -1,19 +1,19 @@
 import React from "react";
 import UserList from "../../admin/user/UserList";
-import StationUserList from "../../admin/stationUser/StationUserList";
-import ChargerUserList from "../../admin/chargerUser/ChargerUserList";
 import BackupBtn from "../../admin/database/BackupBtn";
 import RestoreBtn from "../../admin/database/RestoreBtn";
 import UserChangeRole from "../../admin/user/UserChangeRole";
+import ChargerUserList from "../../admin/chargerUser/ChargerUserList";
+import StationUserList from "../../admin/stationUser/StationUserList";
 
 const VerificationUsersPage = () => {
     return (
         <div>
-            <div className="d-flex justify-content-end" style={{marginTop: "25px"}}>
+            <div style={{"display": "flex", "justifyContent": "end", "alignItems": "center", "marginTop": "25px"}}>
                 <BackupBtn/>
                 <RestoreBtn/>
             </div>
-            <div className="d-flex justify-content-center">
+            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "10px"}}>
                 <UserChangeRole/>
             </div>
             <UserList/>

@@ -13,7 +13,7 @@ const ChargerUserList = () => {
 
     const getListOfChargerUsers = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/get/charger/users/all", "GET", null, {
+            return await request("http://localhost:8080/api/v1/admins/users/chargers", "GET", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -27,32 +27,35 @@ const ChargerUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-           <div className="d-flex justify-content-between">
-               <button
-                   type="button"
-                   className="btn btn-primary"
-                   style={{"marginBottom": "10px"}}
-                   onClick={() => getListOfChargerUsers().then(setListOfChargerUsers)}
-               >
-                   {t("buttons.refresh")}
-               </button>
-               <h3>{t("users.title.chargerUsers")}</h3>
-           </div>
-            <ul className="list-group">
+            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListOfChargerUsers().then(setListOfChargerUsers)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("users.title.chargerUsers")}</h3>
+            </div>
+            <ul className="list">
                 {
                     !loading &&
                     listOfChargerUsers.length ?
-                        listOfChargerUsers.map(chargerUser => <li key={chargerUser?.email}
-                                                                  className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex flex-column">
-                                <span>{t("users.elements.company")}: {chargerUser?.company}</span>
-                                <span>{t("users.elements.email")}: {chargerUser?.email}</span>
-                                <span>{t("users.elements.role")}: {chargerUser?.role}</span>
-                                <span>{t("users.elements.createdAt")}: {new Date(chargerUser?.createdAt).toLocaleDateString()}</span>
+                        listOfChargerUsers.map(chargerUser => <li key={chargerUser?.id} className="list-item">
+                            <div className="list-item-group">
+                                <span
+                                    className="list-item-group-text">{t("users.elements.company")}: {chargerUser?.company}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.email")}: {chargerUser?.email}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.role")}: {chargerUser?.role}</span>
+                                <span
+                                    className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(chargerUser?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <ChargerUserBlockBtn email={chargerUser?.email} isNotBlock={chargerUser?.isNotBlock}/>
-                                <ChargerUserDeleteBtn email={chargerUser?.email}/>
+                                <ChargerUserBlockBtn id={chargerUser?.id} isNotBlock={chargerUser?.isNotBlock}/>
+                                <ChargerUserDeleteBtn id={chargerUser?.id}/>
                             </div>
                         </li>) :
                         <li className="list-group-item d-flex justify-content-center align-items-center">

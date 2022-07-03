@@ -12,7 +12,7 @@ const ChargerUserNoVerificationList = () => {
 
     const getListOfNoVerificationChargerUsers = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/get/no-verification/charger/users/all", "GET", null, {
+            return await request("http://localhost:8080/api/v1/admins/users/chargers/no-verification", "GET", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -25,34 +25,37 @@ const ChargerUserNoVerificationList = () => {
     }, [getListOfNoVerificationChargerUsers]);
 
     return (
-        <div style={{"marginTop": "25px"}} className="flex-grow-1">
+        <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-submit"
                 style={{"marginBottom": "10px"}}
                 onClick={() => getListOfNoVerificationChargerUsers().then(setListOfNoVerificationChargerUsers)}
             >
                 {t("buttons.refresh")}
             </button>
-            <ul className="list-group">
+            <ul className="list">
                 {
                     !loading &&
                     listOfNoVerificationChargerUsers.length ?
-                        listOfNoVerificationChargerUsers.map(chargerUserNoVerification => <li
-                            key={chargerUserNoVerification?.email}
-                            className="list-group-item d-flex justify-content-between align-items-center">
-                            <div className="d-flex flex-column">
-                                <span>{t("users.elements.company")}: {chargerUserNoVerification?.company}</span>
-                                <span>{t("users.elements.email")}: {chargerUserNoVerification?.email}</span>
-                                <span>{t("users.elements.role")}: {chargerUserNoVerification?.role}</span>
-                                <span>{t("users.elements.createdAt")}: {new Date(chargerUserNoVerification?.createdAt).toLocaleDateString()}</span>
-                            </div>
-                            <div>
-                                <ChargerUserAcceptBtn email={chargerUserNoVerification?.email}/>
-                            </div>
-                        </li>) :
-                        <li className="list-group-item d-flex justify-content-center align-items-center">
-                            {t("users.warnings.chargerUser")}
+                        listOfNoVerificationChargerUsers.map(chargerUserNoVerification =>
+                            <li key={chargerUserNoVerification?.id} className="list-item">
+                                <div className="list-item-group">
+                                <span
+                                    className="list-item-group-text">{t("users.elements.company")}: {chargerUserNoVerification?.company}</span>
+                                    <span
+                                        className="list-item-group-text">{t("users.elements.email")}: {chargerUserNoVerification?.email}</span>
+                                    <span
+                                        className="list-item-group-text">{t("users.elements.role")}: {chargerUserNoVerification?.role}</span>
+                                    <span
+                                        className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(chargerUserNoVerification?.createdAt).toLocaleDateString()}</span>
+                                </div>
+                                <div>
+                                    <ChargerUserAcceptBtn id={chargerUserNoVerification?.id}/>
+                                </div>
+                            </li>) :
+                        <li className="list-item">
+                            <span className="list-item-warning">{t("users.warnings.chargerUser")}</span>
                         </li>
                 }
             </ul>

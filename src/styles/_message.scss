@@ -1,0 +1,20 @@
+@import "_colors";
+
+.message {
+  text-align: center;
+  line-height: 1.5;
+  font-size: 16px;
+  transition: all 0.3s ease 0s;
+
+  &-success {
+    color: $green;
+  }
+
+  &-loading {
+    color: $grey;
+  }
+
+  &-error {
+    color: red;
+  }
+}

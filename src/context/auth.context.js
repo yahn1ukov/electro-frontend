@@ -1,13 +1,12 @@
 import {createContext} from "react";
 
-const login = (id, email, token, role) => {
+const login = (id, token, role) => {
 };
 const logout = () => {
 };
 
 const AuthContext = createContext({
     id: null,
-    email: null,
     token: null,
     role: null,
     login,

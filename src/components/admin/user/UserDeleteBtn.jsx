@@ -3,19 +3,19 @@ import {useHttp} from "../../../hooks";
 import React, {useCallback, useContext} from "react";
 import AuthContext from "../../../context/auth.context";
 
-const UserDeleteBtn = ({email}) => {
+const UserDeleteBtn = ({id}) => {
     const {t} = useTranslation();
     const {request} = useHttp();
     const {token} = useContext(AuthContext);
 
     const onDelete = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/admins/delete/users/${email}`, "DELETE", null, {
+            await request(`http://localhost:8080/api/v1/admins/users/${id}/delete`, "DELETE", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
         }
-    }, [request, email, token]);
+    }, [request, id, token]);
 
     return (
         <button

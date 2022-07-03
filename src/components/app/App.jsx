@@ -6,21 +6,21 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 
 const App = () => {
-    const {id, email, token, role, login, logout, isAuth} = useAuth();
+    const {id, token, role, login, logout, isAuth} = useAuth();
     const isAuthentication = !!token;
     const routes = useRoutes(isAuthentication, role);
 
     return (
         <AuthContext.Provider value={{
-            id, email, token, role, login, logout, isAuth
+            id, token, role, login, logout, isAuth
         }}>
             <Router>
                 <header>
                     <Navbar isAuthentication={isAuthentication} role={role}/>
                 </header>
-                <div className="container">
+                <main className="container">
                     {routes}
-                </div>
+                </main>
             </Router>
         </AuthContext.Provider>
     );

@@ -1,0 +1,53 @@
+@import "_colors";
+
+.form {
+  padding: 20px;
+  border: 2px solid $primary;
+  border-radius: 5px;
+
+  & > *:not(:last-child) {
+    margin-bottom: 10px;
+  }
+
+  &-title {
+    text-align: center;
+
+    &-text {
+      color: $primary;
+      font-size: 25px;
+      font-weight: 600;
+    }
+  }
+
+  &-group {
+    display: flex;
+    flex-direction: column;
+
+    & > * {
+      margin-bottom: 5px;
+    }
+  }
+
+  &-label {
+    font-size: 15px;
+    color: $primary;
+  }
+
+  &-control {
+    border: 2px solid rgba($grey, 0.75);
+    border-radius: 5px;
+    width: 225px;
+    height: 35px;
+    padding: 0 10px;
+    transition: all 0.3s ease 0s;
+
+    &:focus {
+      border: 2px solid $primary;
+    }
+  }
+
+  &-error {
+    text-align: center;
+    color: $red;
+  }
+}

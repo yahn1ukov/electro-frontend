@@ -1,0 +1,32 @@
+@import "_colors";
+
+.btn {
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.5;
+  border-radius: 5px;
+  transition: all 0.3s ease 0s;
+
+  &-submit {
+    background-color: $primary;
+    color: $white;
+    border: 1px solid $primary;
+
+    &:hover {
+      background-color: $white;
+      color: $primary;
+    }
+  }
+
+  &-danger {
+    background-color: $red;
+    color: $white;
+    border: 1px solid $red;
+
+    &:hover {
+      background-color: $white;
+      color: $red;
+    }
+  }
+}

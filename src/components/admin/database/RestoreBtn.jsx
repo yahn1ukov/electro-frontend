@@ -10,7 +10,7 @@ const RestoreBtn = () => {
 
     const onRestoreBackup = useCallback(async () => {
         try {
-            return await request("http://localhost:8080/api/v1/admins/restore/backup/db", "POST", null, {
+            await request("http://localhost:8080/api/v1/admins/db/restore", "POST", null, {
                 Authorization: `${token}`
             });
         } catch (e) {
@@ -20,7 +20,7 @@ const RestoreBtn = () => {
     return (
         <button
             type="button"
-            className="btn btn-primary"
+            className="btn btn-submit"
             onClick={onRestoreBackup}
             style={{marginLeft: "10px"}}
         >

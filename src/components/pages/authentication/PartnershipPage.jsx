@@ -1,11 +1,11 @@
 import React from "react";
-import {ChargerPartnershipForm, StationPartnershipForm} from "../../authenticationForms";
+import {FormChargerPartnership, FormStationPartnership} from "../../forms";
 
 const PartnershipPage = () => {
     return (
-        <div className="mt-5 d-flex justify-content-around">
-            <ChargerPartnershipForm/>
-            <StationPartnershipForm/>
+        <div style={{"display": "flex", "justifyContent": "space-around", "alignItems": "center", "marginTop": "50px"}}>
+            <FormChargerPartnership/>
+            <FormStationPartnership/>
         </div>
     );
 }
