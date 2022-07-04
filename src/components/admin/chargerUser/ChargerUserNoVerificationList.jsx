@@ -25,15 +25,18 @@ const ChargerUserNoVerificationList = () => {
     }, [getListOfNoVerificationChargerUsers]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-submit"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListOfNoVerificationChargerUsers().then(setListOfNoVerificationChargerUsers)}
-            >
-                {t("buttons.refresh")}
-            </button>
+        <div>
+            <div className="content-between">
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListOfNoVerificationChargerUsers().then(setListOfNoVerificationChargerUsers)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("users.title.chargerUsers")}</h3>
+            </div>
             <ul className="list">
                 {
                     !loading &&
@@ -55,7 +58,7 @@ const ChargerUserNoVerificationList = () => {
                                 </div>
                             </li>) :
                         <li className="list-item">
-                            <span className="list-item-warning">{t("users.warnings.chargerUser")}</span>
+                            <span className="list-item-warning">{t("users.warnings.applicationChargerUser")}</span>
                         </li>
                 }
             </ul>

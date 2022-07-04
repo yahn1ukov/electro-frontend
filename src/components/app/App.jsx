@@ -1,6 +1,6 @@
 import React from "react";
 import AuthContext from "../../context/auth.context";
-import useRoutes from "../../routes/route";
+import useRoutes from "../../routes/routes";
 import {useAuth} from "../../hooks";
 import {BrowserRouter as Router} from "react-router-dom";
 import Navbar from "../navbar/Navbar";
@@ -15,11 +15,15 @@ const App = () => {
             id, token, role, login, logout, isAuth
         }}>
             <Router>
-                <header>
-                    <Navbar isAuthentication={isAuthentication} role={role}/>
+                <header className="header">
+                    <div className="container">
+                        <Navbar isAuthentication={isAuthentication} role={role}/>
+                    </div>
                 </header>
-                <main className="container">
-                    {routes}
+                <main className="main">
+                    <div className="container">
+                        {routes}
+                    </div>
                 </main>
             </Router>
         </AuthContext.Provider>

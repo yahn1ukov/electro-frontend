@@ -1,0 +1,160 @@
+@import "_colors";
+
+.header__body {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.header__logo {
+  position: relative;
+  z-index: 3;
+  font-size: 30px;
+  font-weight: 600;
+  color: $white;
+}
+
+.header__burger {
+  display: none;
+}
+
+.header__list {
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+
+  & > li:not(:last-child) {
+    margin: 0 10px 0 0;
+  }
+
+  &-link {
+    font-size: 16px;
+    color: $white;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  &-languages {
+    margin: 0 0 0 20px;
+    padding: 5px;
+    border-radius: 5px;
+
+    & > *:not(:last-child and :first-child) {
+      margin: 0 10px 0 0;
+    }
+
+    & > * {
+      color: $white;
+      font-size: 16px;
+      font-weight: 600;
+      background: none;
+    }
+  }
+}
+
+@media (max-width: 860px) {
+  .header__body {
+    height: 60px;
+  }
+
+  .header__burger {
+    display: block;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    z-index: 3;
+
+    & span {
+      position: absolute;
+      background-color: $white;
+      width: 100%;
+      height: 2px;
+      top: 9px;
+      left: 0;
+      transition: all 0.3s ease 0s;
+    }
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      background-color: $white;
+      width: 100%;
+      height: 2px;
+      left: 0;
+      transition: all 0.3s ease 0s;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+    }
+
+    &.active::before {
+      transform: rotate(45deg);
+      top: 9px;
+    }
+
+    &.active::after {
+      transform: rotate(-45deg);
+      bottom: 9px;
+    }
+
+    &.active span {
+      transform: scale(0);
+    }
+  }
+
+  .header__menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: -100%;
+    left: 0;
+    background-color: $primary;
+    padding: 100px 15px 0 15px;
+    overflow: auto;
+    transition: all 0.3s ease 0s;
+
+    &.active {
+      top: 0;
+    }
+  }
+
+  .header__logo {
+    & i {
+      font-size: 40px;
+    }
+  }
+
+  .header__list {
+    display: block;
+
+    & > li:not(:last-child) {
+      margin: 0 0 50px 0;
+    }
+
+    &-link {
+      font-size: 22px;
+    }
+
+    &-languages {
+      margin: 0;
+      width: 145px;
+
+      & > *:not(:last-child) {
+        margin: 0 7px 0 0;
+      }
+
+      & > * {
+        font-size: 20px;
+      }
+    }
+  }
+}

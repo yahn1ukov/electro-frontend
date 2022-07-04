@@ -42,7 +42,7 @@ const ChargerAddForm = () => {
             initialValues={initialValues}
             onSubmit={onSubmit}
         >
-            <Form className="form" style={{marginTop: "25px"}}>
+            <Form className="form">
                 {success && <MessageSuccess success={success}/>}
                 {loading && <MessageLoading/>}
                 {error && <MessageError error={error}/>}

@@ -26,8 +26,8 @@ const UserList = () => {
     }, [getListOfUsers]);
 
     return (
-        <div style={{"marginTop": "5px"}}>
-            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
+        <div style={{"marginTop": "25px"}}>
+            <div className="content-between">
                 <button
                     type="button"
                     className="btn btn-submit"

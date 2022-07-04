@@ -1,9 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import {useAuth} from "../../hooks";
 
 const Navbar = ({isAuthentication, role}) => {
+    const [activeMenu, setActiveMenu] = useState(false);
     const {t, i18n} = useTranslation();
     const {logout} = useAuth();
 
@@ -11,79 +12,58 @@ const Navbar = ({isAuthentication, role}) => {
         i18n.changeLanguage(language);
     }
 
+    const changeHandler = () => {
+        setActiveMenu(!activeMenu);
+    }
+
     const onLeave = () => {
         logout();
     }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-light">
-            <div className="container">
-                <Link className="navbar-brand" to="/">Electro</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                    <ul className="list-group list-group-horizontal">
+        <div className="header__body">
+            <Link className="header__logo" to="/">
+                Electro
+            </Link>
+            <div className={activeMenu ? "header__burger active" : "header__burger"} onClick={changeHandler}>
+                <span></span>
+            </div>
+            <nav className={activeMenu ? "header__menu active" : "header__menu"}>
+                <ul className="header__list">
+                    {
+                        isAuthentication ?
+                            <li className="header__list-item" onClick={onLeave}>
+                                <span className="header__list-link">{t("navbar.isAuthentication.leave")}</span>
+                            </li> :
+                            <>
+                                <li className="header__list-item">
+                                    <Link className="header__list-link"
+                                          to="/">{t("navbar.isNotAuthentication.login")}</Link>
+                                </li>
+                                <li className="header__list-item">
+                                    <Link className="header__list-link"
+                                          to="/registration">{t("navbar.isNotAuthentication.registration")}</Link>
+                                </li>
+                                <li className="header__list-item">
+                                    <Link className="header__list-link"
+                                          to="/partnership">{t("navbar.isNotAuthentication.partnership")}</Link>
+                                </li>
+                            </>
+                    }
+                    <li className="header__list-languages">
                         <button
-                            className="list-group-item"
                             onClick={() => changeLanguageHandler("en")}>
                             EN
                         </button>
                         <button
-                            className="list-group-item"
                             onClick={() => changeLanguageHandler("ua")}>
                             UA
                         </button>
-                    </ul>
-                    <ul className="navbar-nav">
-                        {
-                            isAuthentication ?
-                                <>
-                                    <WhatIsUser role={role}/>
-                                    <li className="nav-item" onClick={onLeave}>
-                                        <span className="nav-link">{t("navbar.isAuthentication.leave")}</span>
-                                    </li>
-                                </> :
-                                <>
-                                    <li className="nav-item">
-                                        <Link className="nav-link"
-                                              to="/">{t("navbar.isNotAuthentication.login")}</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link"
-                                              to="/registration">{t("navbar.isNotAuthentication.registration")}</Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link className="nav-link"
-                                              to="/apply/partnership">{t("navbar.isNotAuthentication.partnership")}</Link>
-                                    </li>
-                                </>
-                        }
-                    </ul>
-                </div>
-            </div>
-        </nav>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     );
 }
-
-const WhatIsUser = ({role}) => {
-    const {t} = useTranslation();
-
-    return role === "ADMIN" ?
-        <>
-            <li className="nav-item">
-                <Link className="nav-link"
-                      to="/">{t("navbar.isAuthentication.users")}</Link>
-            </li>
-            <li className="nav-item">
-                <Link className="nav-link"
-                      to="/no-verification/users">{t("navbar.isAuthentication.partnership")}</Link>
-            </li>
-        </> :
-        null;
-}
-
 
 export default Navbar;

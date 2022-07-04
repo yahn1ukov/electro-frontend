@@ -1,33 +1,31 @@
 import {Route, Routes} from "react-router-dom";
 import {
     Page404,
+    PageAdminUser,
     PageChargerUser,
     PageLogin,
     PageModerator,
-    PageNoVerificationUsers,
     PagePartnership,
     PageRegistration,
-    PageStationUser,
-    PageVerificationUsers
+    PageStationUser
 } from "../components/pages";
 
 const useRoutes = (isAuthentication, role) => (
     <Routes>
-        <Route exact path="/" element={isAuthentication ? <WhatIsUser role={role}/> : <PageLogin/>}/>
+        <Route path="/" element={isAuthentication ? <WhatIsUser role={role}/> : <PageLogin/>}/>
         {
-            isAuthentication && role === "ADMIN" ?
-                <Route path="/no-verification/users" element={<PageNoVerificationUsers/>}/> :
-                <>
-                    <Route path="/registration" element={<PageRegistration/>}/>
-                    <Route path="/apply/partnership" element={<PagePartnership/>}/>
-                </>
+            !isAuthentication &&
+            <>
+                <Route path="/registration" element={<PageRegistration/>}/>
+                <Route path="/partnership" element={<PagePartnership/>}/>
+            </>
         }
     </Routes>
 );
 
 const WhatIsUser = ({role}) => {
     if (role === "ADMIN") {
-        return <PageVerificationUsers/>;
+        return <PageAdminUser/>;
     } else if (role === "CHARGER") {
         return <PageChargerUser/>;
     } else if (role === "STATION") {

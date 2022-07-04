@@ -25,7 +25,7 @@ const ComplaintChargerList = () => {
     }, [getListComplaintsCharger]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
+        <div>
             <button
                 type="button"
                 className="btn btn-submit"

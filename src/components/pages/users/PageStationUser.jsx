@@ -6,10 +6,10 @@ import StationChangeFreePlaces from "../../station/StationChangeFreePlaces";
 const PageStationUser = () => {
     return (
         <div>
-            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+            <div className="content-center">
                 <StationAddForm/>
             </div>
-            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+            <div className="content-center">
                 <StationChangeFreePlaces/>
             </div>
             <StationList/>

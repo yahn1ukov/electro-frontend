@@ -6,9 +6,7 @@
       "partnership": "Apply for partnership"
     },
     "isAuthentication": {
-      "leave": "Leave",
-      "partnership": "Applications for cooperation",
-      "users": "Users"
+      "leave": "Leave"
     }
   },
   "form": {
@@ -16,8 +14,8 @@
       "login": "Login",
       "registration": "Registration",
       "partnership": {
-        "charger": "Charger Station",
-        "station": "Service Station"
+        "charger": "Charger station",
+        "station": "Service station"
       }
     },
     "elements": {
@@ -94,8 +92,10 @@
   "users": {
     "warnings": {
       "user": "No users",
-      "chargerUser": "No charger users",
-      "stationUser": "No station users"
+      "chargerUser": "No users of charging stations",
+      "stationUser": "No users of service stations",
+      "applicationChargerUser": "No applications from users of charging stations",
+      "applicationStationUser": "No applications from users of service stations"
     },
     "elements": {
       "fullName": "Full name",
@@ -106,8 +106,8 @@
     },
     "title": {
       "users": "Users",
-      "chargerUsers": "Charger users",
-      "stationUsers": "Station users"
+      "chargerUsers": "Users of charging stations",
+      "stationUsers": "Users of service stations"
     }
   },
   "maintenance": {

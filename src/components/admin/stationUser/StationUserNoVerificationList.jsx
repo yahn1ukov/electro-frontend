@@ -25,15 +25,18 @@ const StationUserNoVerificationList = () => {
     }, [getListOfNoVerificationStationUsers]);
 
     return (
-        <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-submit"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListOfNoVerificationStationUsers().then(setListOfNoVerificationStationUsers)}
-            >
-                {t("buttons.refresh")}
-            </button>
+        <div>
+            <div className="content-between">
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListOfNoVerificationStationUsers().then(setListOfNoVerificationStationUsers)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("users.title.stationUsers")}</h3>
+            </div>
             <ul className="list">
                 {
                     !loading &&
@@ -55,7 +58,7 @@ const StationUserNoVerificationList = () => {
                                 </div>
                             </li>) :
                         <li className="list-item">
-                            <span className="list-item-warning">{t("users.warnings.stationUser")}</span>
+                            <span className="list-item-warning">{t("users.warnings.applicationStationUser")}</span>
                         </li>
                 }
             </ul>

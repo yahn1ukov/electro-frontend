@@ -25,10 +25,10 @@ const StationList = () => {
     }, [getListOfStations]);
 
     return (
-        <div style={{"marginTop": "5xp"}}>
+        <div style={{"marginTop": "10xp"}}>
             <button
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-submit"
                 style={{"marginBottom": "10px"}}
                 onClick={() => getListOfStations().then(setListOfStations)}
             >

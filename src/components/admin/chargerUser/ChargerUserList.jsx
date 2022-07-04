@@ -27,7 +27,7 @@ const ChargerUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
+            <div className="content-between">
                 <button
                     type="button"
                     className="btn btn-submit"

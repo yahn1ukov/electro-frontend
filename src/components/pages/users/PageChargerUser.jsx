@@ -5,7 +5,7 @@ import ChargerAddForm from "../../charger/ChargerAddForm";
 const PageChargerUser = () => {
     return (
         <div>
-            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+            <div className="content-center">
                 <ChargerAddForm/>
             </div>
             <ChargerList/>

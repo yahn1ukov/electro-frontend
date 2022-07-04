@@ -5,16 +5,22 @@ import RestoreBtn from "../../admin/database/RestoreBtn";
 import UserChangeRole from "../../admin/user/UserChangeRole";
 import ChargerUserList from "../../admin/chargerUser/ChargerUserList";
 import StationUserList from "../../admin/stationUser/StationUserList";
+import ChargerUserNoVerificationList from "../../admin/chargerUser/ChargerUserNoVerificationList";
+import StationUserNoVerificationList from "../../admin/stationUser/StationUserNoVerificationList";
 
-const PageVerificationUsers = () => {
+const PageAdminUser = () => {
     return (
         <div>
-            <div style={{"display": "flex", "justifyContent": "end", "alignItems": "center", "marginTop": "25px"}}>
+            <div className="content-end">
                 <BackupBtn/>
                 <RestoreBtn/>
             </div>
-            <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "10px"}}>
+            <div className="content-center" style={{"marginTop": "10px"}}>
                 <UserChangeRole/>
+            </div>
+            <div className="content-fill" style={{"marginTop": "25px"}}>
+                <ChargerUserNoVerificationList/>
+                <StationUserNoVerificationList/>
             </div>
             <UserList/>
             <ChargerUserList/>
@@ -23,4 +29,4 @@ const PageVerificationUsers = () => {
     );
 }
 
-export default PageVerificationUsers;
+export default PageAdminUser;

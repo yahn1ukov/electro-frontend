@@ -3,6 +3,8 @@
 .list {
   border: 2px solid $primary;
   border-radius: 5px;
+  max-height: 305px;
+  overflow-y: auto;
 
   & > *:not(:last-child) {
     border-bottom: 2px solid $primary;
