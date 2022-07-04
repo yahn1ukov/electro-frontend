@@ -1,9 +1,7 @@
 import React from "react";
 
 const MessageSuccess = ({success}) => (
-    <p className="message">
-        <span className="message-success">{success}</span>
-    </p>
+    <span className="message message-success">{success}</span>
 );
 
 export default MessageSuccess;

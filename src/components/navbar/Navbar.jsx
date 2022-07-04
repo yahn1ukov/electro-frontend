@@ -1,12 +1,14 @@
-import React, {useState} from "react";
+import React, {useCallback, useContext, useState} from "react";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
-import {useAuth} from "../../hooks";
+import {useHttp} from "../../hooks";
+import AuthContext from "../../context/auth.context";
 
-const Navbar = ({isAuthentication, role}) => {
+const Navbar = ({isAuthentication}) => {
     const [activeMenu, setActiveMenu] = useState(false);
     const {t, i18n} = useTranslation();
-    const {logout} = useAuth();
+    const {logout, token} = useContext(AuthContext);
+    const {request} = useHttp();
 
     const changeLanguageHandler = (language) => {
         i18n.changeLanguage(language);
@@ -16,9 +18,15 @@ const Navbar = ({isAuthentication, role}) => {
         setActiveMenu(!activeMenu);
     }
 
-    const onLeave = () => {
+    const onLeave = useCallback(async () => {
+        try {
+            await request("http://localhost:8080/api/v1/authentication/logout", "POST", null, {
+                Authorization: `${token}`
+            });
+        } catch (e) {
+        }
         logout();
-    }
+    }, [logout, request, token]);
 
     return (
         <div className="header__body">
@@ -32,8 +40,13 @@ const Navbar = ({isAuthentication, role}) => {
                 <ul className="header__list">
                     {
                         isAuthentication ?
-                            <li className="header__list-item" onClick={onLeave}>
-                                <span className="header__list-link">{t("navbar.isAuthentication.leave")}</span>
+                            <li className="header__list-item">
+                                <span
+                                    className="header__list-link"
+                                    style={{"cursor": "pointer"}}
+                                    onClick={onLeave}>
+                                    {t("navbar.isAuthentication.leave")}
+                                </span>
                             </li> :
                             <>
                                 <li className="header__list-item">

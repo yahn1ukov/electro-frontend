@@ -28,7 +28,7 @@ const StationChangeFreePlaces = () => {
             initialValues={initialValues}
             onSubmit={onSubmit}
         >
-            <Form className="form" style={{marginTop: "20px"}}>
+            <Form className="form" style={{marginTop: "25px"}}>
                 {success && <MessageSuccess success={success}/>}
                 {loading && <MessageLoading/>}
                 {error && <MessageError error={error}/>}

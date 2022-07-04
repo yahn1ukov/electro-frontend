@@ -3,7 +3,7 @@ import {FormLogin} from "../../forms";
 
 const PageLogin = () => {
     return (
-        <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+        <div className="content-center">
             <FormLogin/>
         </div>
     );

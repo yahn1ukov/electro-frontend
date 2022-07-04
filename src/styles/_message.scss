@@ -1,20 +1,26 @@
 @import "_colors";
 
 .message {
-  text-align: center;
-  line-height: 1.5;
   font-size: 16px;
-  transition: all 0.3s ease 0s;
+  word-break: break-all;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
 
   &-success {
     color: $green;
+    border: 2px solid $green;
   }
 
   &-loading {
     color: $grey;
+    border: 2px solid $grey;
   }
 
   &-error {
-    color: red;
+    color: $red;
+    border: 2px solid $red;
   }
 }

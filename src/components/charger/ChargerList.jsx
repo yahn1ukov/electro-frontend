@@ -25,7 +25,7 @@ const ChargerList = () => {
     }, [getListOfChargers]);
 
     return (
-        <div style={{"marginTop": "5xp"}}>
+        <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
                 className="btn btn-submit"

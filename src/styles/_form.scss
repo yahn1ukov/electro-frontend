@@ -1,7 +1,7 @@
 @import "_colors";
 
 .form {
-  padding: 20px;
+  padding: 15px;
   border: 2px solid $primary;
   border-radius: 5px;
 
@@ -45,6 +45,7 @@
     border: 2px solid rgba($grey, 0.75);
     border-radius: 5px;
     height: 35px;
+    min-width: 250px;
     padding: 0 10px;
     transition: all 0.3s ease 0s;
 
@@ -56,5 +57,17 @@
   &-error {
     text-align: center;
     color: $red;
+  }
+}
+
+@media (max-width: 600px) {
+  .form {
+    &-subgroup {
+      flex-direction: column;
+
+      & > *:not(:last-child) {
+        margin-right: 0;
+      }
+    }
   }
 }

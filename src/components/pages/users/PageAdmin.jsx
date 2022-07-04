@@ -8,14 +8,14 @@ import StationUserList from "../../admin/stationUser/StationUserList";
 import ChargerUserNoVerificationList from "../../admin/chargerUser/ChargerUserNoVerificationList";
 import StationUserNoVerificationList from "../../admin/stationUser/StationUserNoVerificationList";
 
-const PageAdminUser = () => {
+const PageAdmin = () => {
     return (
         <div>
             <div className="content-end">
                 <BackupBtn/>
                 <RestoreBtn/>
             </div>
-            <div className="content-center" style={{"marginTop": "10px"}}>
+            <div className="content-center" style={{"marginTop": "25px"}}>
                 <UserChangeRole/>
             </div>
             <div className="content-fill" style={{"marginTop": "25px"}}>
@@ -29,4 +29,4 @@ const PageAdminUser = () => {
     );
 }
 
-export default PageAdminUser;
+export default PageAdmin;

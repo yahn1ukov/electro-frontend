@@ -66,8 +66,27 @@
   padding: 110px 0 20px 0;
 }
 
+@media (max-width: 930px) {
+  .content-fill {
+    flex-direction: column;
+
+    & > * {
+      flex: 0;
+    }
+
+    & > *:not(:last-child) {
+      margin-right: 0;
+      margin-bottom: 25px;
+    }
+  }
+}
+
 @media (max-width: 860px) {
   .header {
     padding: 0 20px;
+  }
+
+  .content-end {
+    justify-content: center;
   }
 }

@@ -1,7 +1,7 @@
 import PageLogin from "./authentication/PageLogin";
 import PageRegistration from "./authentication/PageRegistration";
 import PagePartnership from "./authentication/PagePartnership";
-import PageAdminUser from "./users/PageAdminUser";
+import PageAdmin from "./users/PageAdmin";
 import PageChargerUser from "./users/PageChargerUser";
 import PageStationUser from "./users/PageStationUser";
 import PageModerator from "./users/PageModerator";
@@ -11,7 +11,7 @@ export {
     PageLogin,
     PageRegistration,
     PagePartnership,
-    PageAdminUser,
+    PageAdmin,
     PageChargerUser,
     PageStationUser,
     PageModerator,

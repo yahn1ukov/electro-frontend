@@ -5,9 +5,7 @@ const MessageLoading = () => {
     const {t} = useTranslation();
 
     return (
-        <p className="message">
-            <span className="message-loading">{t("form.message.loading")}</span>
-        </p>
+        <span className="message message-loading">{t("form.message.loading")}</span>
     );
 }
 

@@ -25,7 +25,7 @@ const StationList = () => {
     }, [getListOfStations]);
 
     return (
-        <div style={{"marginTop": "10xp"}}>
+        <div style={{"marginTop": "25px"}}>
             <button
                 type="button"
                 className="btn btn-submit"

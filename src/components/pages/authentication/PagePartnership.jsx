@@ -3,7 +3,7 @@ import {FormChargerPartnership, FormStationPartnership} from "../../forms";
 
 const PagePartnership = () => {
     return (
-        <div style={{"display": "flex", "justifyContent": "space-around", "alignItems": "center", "marginTop": "50px"}}>
+        <div className="content-fill">
             <FormChargerPartnership/>
             <FormStationPartnership/>
         </div>

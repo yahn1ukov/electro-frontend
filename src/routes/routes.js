@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import {
     Page404,
-    PageAdminUser,
+    PageAdmin,
     PageChargerUser,
     PageLogin,
     PageModerator,
@@ -25,7 +25,7 @@ const useRoutes = (isAuthentication, role) => (
 
 const WhatIsUser = ({role}) => {
     if (role === "ADMIN") {
-        return <PageAdminUser/>;
+        return <PageAdmin/>;
     } else if (role === "CHARGER") {
         return <PageChargerUser/>;
     } else if (role === "STATION") {

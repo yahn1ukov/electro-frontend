@@ -3,7 +3,7 @@ import {FormRegistration} from "../../forms";
 
 const PageRegistration = () => {
     return (
-        <div style={{"display": "flex", "justifyContent": "center", "alignItems": "center", "marginTop": "50px"}}>
+        <div className="content-center">
             <FormRegistration/>
         </div>
     );

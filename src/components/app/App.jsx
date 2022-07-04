@@ -17,7 +17,7 @@ const App = () => {
             <Router>
                 <header className="header">
                     <div className="container">
-                        <Navbar isAuthentication={isAuthentication} role={role}/>
+                        <Navbar isAuthentication={isAuthentication}/>
                     </div>
                 </header>
                 <main className="main">
