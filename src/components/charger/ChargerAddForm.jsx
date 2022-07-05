@@ -6,10 +6,10 @@ import {Field, Form, Formik} from "formik";
 import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const ChargerAddForm = () => {
-    const [success, setSuccess] = useState("");
-    const {token, id} = useContext(AuthContext);
+    const [success, setSuccess] = useState(null);
     const {request, loading, error, clearError} = useHttp();
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const initialValues = {
         code: "",
@@ -29,18 +29,21 @@ const ChargerAddForm = () => {
 
     const onSubmit = useCallback(async (values) => {
         try {
-            const data = await request(`http://localhost:8080/api/v1/chargers/users/${id}/create`, "POST", {...values}, {
-                Authorization: `${token}`
+            const data = await request(`http://localhost:8080/api/v1/chargers/users/current/create`, "POST", {...values}, {
+                Authorization: `Bearer ${token}`
             });
             setSuccess(data.message);
         } catch (e) {
         }
-    }, [id, token, request]);
+    }, [token, request]);
 
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, {resetForm}) => {
+                onSubmit(values);
+                resetForm(initialValues);
+            }}
         >
             <Form className="form">
                 {success && <MessageSuccess success={success}/>}
@@ -199,7 +202,10 @@ const ChargerAddForm = () => {
                 <button
                     className="btn btn-submit"
                     type="submit"
-                    onClick={clearError}
+                    onClick={() => {
+                        clearError();
+                        setSuccess(null);
+                    }}
                 >
                     {t("buttons.submit")}
                 </button>

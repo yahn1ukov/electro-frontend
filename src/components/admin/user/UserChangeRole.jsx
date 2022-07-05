@@ -7,16 +7,16 @@ import {MessageError, MessageLoading, MessageSuccess} from "../../message";
 
 const UserChangeRole = () => {
     const [success, setSuccess] = useState("");
-    const {token} = useContext(AuthContext);
     const {request, loading, error, clearError} = useHttp();
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const initialValues = {email: "", role: "ADMIN"};
 
     const onSubmit = useCallback(async (values) => {
         try {
             const data = await request(`http://localhost:8080/api/v1/admins/users/${values.email}/role`, "PATCH", {role: values.role}, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
             setSuccess(data.message);
         } catch (e) {

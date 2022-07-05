@@ -1,20 +1,20 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../../hooks";
-import AuthContext from "../../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import ChargerUserBlockBtn from "./ChargerUserBlockBtn";
 import ChargerUserDeleteBtn from "./ChargerUserDeleteBtn";
+import AuthContext from "../../../context/auth.context";
 
 const ChargerUserList = () => {
     const [listOfChargerUsers, setListOfChargerUsers] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfChargerUsers = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/admins/users/chargers", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -54,8 +54,9 @@ const ChargerUserList = () => {
                                     className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(chargerUser?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <ChargerUserBlockBtn id={chargerUser?.id} isNotBlock={chargerUser?.isNotBlock}/>
-                                <ChargerUserDeleteBtn id={chargerUser?.id}/>
+                                <ChargerUserBlockBtn chargerUserId={chargerUser?.id}
+                                                     isNotBlock={chargerUser?.isNotBlock}/>
+                                <ChargerUserDeleteBtn chargerUserId={chargerUser?.id}/>
                             </div>
                         </li>) :
                         <li className="list-item">

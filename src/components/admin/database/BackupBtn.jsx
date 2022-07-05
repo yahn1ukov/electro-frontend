@@ -11,7 +11,7 @@ const BackupBtn = () => {
     const onCreateBackup = useCallback(async () => {
         try {
             await request("http://localhost:8080/api/v1/admins/db/backup", "POST", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }

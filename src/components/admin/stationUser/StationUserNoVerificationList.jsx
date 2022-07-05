@@ -1,19 +1,19 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../../hooks";
-import AuthContext from "../../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import StationUserAcceptBtn from "./StationUserAcceptBtn";
+import AuthContext from "../../../context/auth.context";
 
 const StationUserNoVerificationList = () => {
     const [listOfNoVerificationStationUsers, setListOfNoVerificationStationUsers] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfNoVerificationStationUsers = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/admins/users/stations/no-verification", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -54,7 +54,7 @@ const StationUserNoVerificationList = () => {
                                         className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(stationUserNoVerification?.createdAt).toLocaleDateString()}</span>
                                 </div>
                                 <div>
-                                    <StationUserAcceptBtn id={stationUserNoVerification?.id}/>
+                                    <StationUserAcceptBtn stationUserId={stationUserNoVerification?.id}/>
                                 </div>
                             </li>) :
                         <li className="list-item">

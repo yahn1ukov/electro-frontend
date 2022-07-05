@@ -1,7 +1,7 @@
 import React from "react";
-import StationList from "../../station/StationList";
-import StationAddForm from "../../station/StationAddForm";
-import StationChangeFreePlaces from "../../station/StationChangeFreePlaces";
+import StationList from "../station/StationList";
+import StationAddForm from "../station/StationAddForm";
+import StationChangeFreePlaces from "../station/StationChangeFreePlaces";
 
 const PageStationUser = () => {
     return (

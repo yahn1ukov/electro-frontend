@@ -76,6 +76,10 @@
       "charger": "No complaints about charging stations",
       "station": "No complaints to service stations"
     },
+    "name": {
+      "charger": "Charger stations",
+      "station": "Service stations"
+    },
     "elements": {
       "user": "User",
       "company": "Company",

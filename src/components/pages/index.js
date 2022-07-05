@@ -1,10 +1,10 @@
-import PageLogin from "./authentication/PageLogin";
-import PageRegistration from "./authentication/PageRegistration";
-import PagePartnership from "./authentication/PagePartnership";
-import PageAdmin from "./users/PageAdmin";
-import PageChargerUser from "./users/PageChargerUser";
-import PageStationUser from "./users/PageStationUser";
-import PageModerator from "./users/PageModerator";
+import PageLogin from "./PageLogin";
+import PageRegistration from "./PageRegistration";
+import PagePartnership from "./PagePartnership";
+import PageAdmin from "./PageAdmin";
+import PageChargerUser from "./PageChargerUser";
+import PageStationUser from "./PageStationUser";
+import PageModerator from "./PageModerator";
 import Page404 from "./Page404";
 
 export {

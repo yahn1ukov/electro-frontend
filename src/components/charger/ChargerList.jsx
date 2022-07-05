@@ -1,23 +1,23 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../hooks";
-import AuthContext from "../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import ChargerDeleteBtn from "./ChargerDeleteBtn";
+import AuthContext from "../../context/auth.context";
 
 const ChargerList = () => {
     const [listOfChargers, setListOfChargers] = useState([]);
     const {request, loading} = useHttp();
-    const {token, id} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfChargers = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/chargers/users/${id}`, "GET", null, {
-                Authorization: `${token}`
+            return await request(`http://localhost:8080/api/v1/chargers/users/current`, "GET", null, {
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
-    }, [request, token, id]);
+    }, [request, token]);
 
     useEffect(() => {
         getListOfChargers()

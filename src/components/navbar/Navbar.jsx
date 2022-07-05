@@ -21,7 +21,7 @@ const Navbar = ({isAuthentication}) => {
     const onLeave = useCallback(async () => {
         try {
             await request("http://localhost:8080/api/v1/authentication/logout", "POST", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }

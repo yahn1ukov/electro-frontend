@@ -1,14 +1,15 @@
 import React from "react";
-import UserList from "../../admin/user/UserList";
-import BackupBtn from "../../admin/database/BackupBtn";
-import RestoreBtn from "../../admin/database/RestoreBtn";
-import UserChangeRole from "../../admin/user/UserChangeRole";
-import ChargerUserList from "../../admin/chargerUser/ChargerUserList";
-import StationUserList from "../../admin/stationUser/StationUserList";
-import ChargerUserNoVerificationList from "../../admin/chargerUser/ChargerUserNoVerificationList";
-import StationUserNoVerificationList from "../../admin/stationUser/StationUserNoVerificationList";
+import UserList from "../admin/user/UserList";
+import BackupBtn from "../admin/database/BackupBtn";
+import RestoreBtn from "../admin/database/RestoreBtn";
+import UserChangeRole from "../admin/user/UserChangeRole";
+import ChargerUserList from "../admin/chargerUser/ChargerUserList";
+import StationUserList from "../admin/stationUser/StationUserList";
+import ChargerUserNoVerificationList from "../admin/chargerUser/ChargerUserNoVerificationList";
+import StationUserNoVerificationList from "../admin/stationUser/StationUserNoVerificationList";
 
 const PageAdmin = () => {
+
     return (
         <div>
             <div className="content-end">

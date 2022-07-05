@@ -16,7 +16,7 @@ const FormLogin = () => {
     const onSubmit = async (values) => {
         try {
             const data = await request("http://localhost:8080/api/v1/authentication/login", "POST", {...values});
-            login(data.id, data.token, data.role);
+            login(data.token, data.role);
         } catch (e) {
         }
     }

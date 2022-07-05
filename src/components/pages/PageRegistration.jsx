@@ -1,5 +1,5 @@
 import React from "react";
-import {FormRegistration} from "../../forms";
+import {FormRegistration} from "../forms";
 
 const PageRegistration = () => {
     return (

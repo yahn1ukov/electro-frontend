@@ -1,20 +1,20 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../../hooks";
-import AuthContext from "../../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import UserDeleteBtn from "./UserDeleteBtn";
 import UserBlockBtn from "./UserBlockBtn";
+import AuthContext from "../../../context/auth.context";
 
 const UserList = () => {
     const [listOfUsers, setListOfUsers] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfUsers = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/admins/users", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -52,8 +52,8 @@ const UserList = () => {
                                     className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(user?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <UserBlockBtn id={user?.id} isNotBlock={user?.isNotBlock}/>
-                                <UserDeleteBtn id={user?.id}/>
+                                <UserBlockBtn userId={user?.id} isNotBlock={user?.isNotBlock}/>
+                                <UserDeleteBtn userId={user?.id}/>
                             </div>
                         </li>) :
                         <li className="list-item">

@@ -1,19 +1,19 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../hooks";
-import AuthContext from "../../context/auth.context";
 import ComplaintChargerDeleteButton from "./ComplaintChargerDeleteButton";
 import {useTranslation} from "react-i18next";
+import AuthContext from "../../context/auth.context";
 
 const ComplaintChargerList = () => {
     const [listComplaintsOfCharger, setListComplaintsOfCharger] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListComplaintsCharger = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/moderators/complaints/chargers", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -26,14 +26,17 @@ const ComplaintChargerList = () => {
 
     return (
         <div>
-            <button
-                type="button"
-                className="btn btn-submit"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListComplaintsCharger().then(setListComplaintsOfCharger)}
-            >
-                {t("buttons.refresh")}
-            </button>
+            <div className="content-between">
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListComplaintsCharger().then(setListComplaintsOfCharger)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("complaint.name.charger")}</h3>
+            </div>
             <ul className="list">
                 {
                     !loading &&
@@ -58,7 +61,7 @@ const ComplaintChargerList = () => {
                                     className="list-item-group-text">{t("complaint.elements.createdAt")}: {new Date(complaint?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <ComplaintChargerDeleteButton id={complaint?.id}/>
+                                <ComplaintChargerDeleteButton complaintId={complaint?.id}/>
                             </div>
                         </li>) :
                         <li className="list-item">

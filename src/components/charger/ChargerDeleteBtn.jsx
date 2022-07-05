@@ -6,16 +6,16 @@ import AuthContext from "../../context/auth.context";
 const ChargerDeleteBtn = ({chargerId}) => {
     const {t} = useTranslation();
     const {request} = useHttp();
-    const {token, id} = useContext(AuthContext);
+    const {token} = useContext(AuthContext);
 
     const onDelete = useCallback(async () => {
         try {
-            await request(`http://localhost:8080/api/v1/chargers/${chargerId}/users/${id}/delete`, "DELETE", null, {
-                Authorization: `${token}`
+            await request(`http://localhost:8080/api/v1/chargers/${chargerId}/users/current/delete`, "DELETE", null, {
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
-    }, [request, chargerId, token, id]);
+    }, [request, chargerId, token]);
 
     return (
         <button

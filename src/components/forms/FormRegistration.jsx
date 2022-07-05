@@ -6,7 +6,7 @@ import React, {useState} from "react";
 import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const FormRegistration = () => {
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState(null);
     const {request, clearError, loading, error} = useHttp();
     const {t} = useTranslation();
 
@@ -29,7 +29,10 @@ const FormRegistration = () => {
                 lastName: Yup.string().required(t("form.yup.required")),
                 password: Yup.string().required(t("form.yup.required"))
             })}
-            onSubmit={onSubmit}
+            onSubmit={(values, {resetForm}) => {
+                onSubmit(values);
+                resetForm(initialValues);
+            }}
         >
             <Form className="form">
                 <h3 className="form-title">
@@ -101,7 +104,10 @@ const FormRegistration = () => {
                 <button
                     className="btn btn-submit"
                     type="submit"
-                    onClick={clearError}
+                    onClick={() => {
+                        clearError();
+                        setSuccess(null);
+                    }}
                 >
                     {t("form.elements.buttons.registration")}
                 </button>

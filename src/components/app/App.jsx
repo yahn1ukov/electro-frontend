@@ -6,13 +6,13 @@ import {BrowserRouter as Router} from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 
 const App = () => {
-    const {id, token, role, login, logout, isAuth} = useAuth();
+    const {token, role, login, logout, isAuth} = useAuth();
     const isAuthentication = !!token;
     const routes = useRoutes(isAuthentication, role);
 
     return (
         <AuthContext.Provider value={{
-            id, token, role, login, logout, isAuth
+            token, role, login, logout, isAuth
         }}>
             <Router>
                 <header className="header">

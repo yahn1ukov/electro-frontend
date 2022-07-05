@@ -11,7 +11,7 @@ const RestoreBtn = () => {
     const onRestoreBackup = useCallback(async () => {
         try {
             await request("http://localhost:8080/api/v1/admins/db/restore", "POST", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }

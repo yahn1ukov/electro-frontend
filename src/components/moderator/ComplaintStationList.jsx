@@ -1,19 +1,19 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../hooks";
-import AuthContext from "../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import ComplaintStationDeleteButton from "./ComplaintStationDeleteButton";
+import AuthContext from "../../context/auth.context";
 
 const ComplaintStationList = () => {
     const [listComplaintsOfStation, setListComplaintsOfStation] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListComplaintsStation = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/moderators/complaints/stations", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -26,14 +26,17 @@ const ComplaintStationList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-            <button
-                type="button"
-                className="btn btn-submit"
-                style={{"marginBottom": "10px"}}
-                onClick={() => getListComplaintsStation().then(setListComplaintsOfStation)}
-            >
-                {t("buttons.refresh")}
-            </button>
+            <div className="content-between">
+                <button
+                    type="button"
+                    className="btn btn-submit"
+                    style={{"marginBottom": "10px"}}
+                    onClick={() => getListComplaintsStation().then(setListComplaintsOfStation)}
+                >
+                    {t("buttons.refresh")}
+                </button>
+                <h3 className="list-title">{t("complaint.name.station")}</h3>
+            </div>
             <ul className="list">
                 {
                     !loading &&
@@ -59,7 +62,7 @@ const ComplaintStationList = () => {
                                     className="list-item-group-text">{t("complaint.elements.createdAt")}: {new Date(complaint?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <ComplaintStationDeleteButton id={complaint?.id}/>
+                                <ComplaintStationDeleteButton complaintId={complaint?.id}/>
                             </div>
                         </li>) :
                         <li className="list-item">

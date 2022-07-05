@@ -3,19 +3,19 @@ import {useHttp} from "../../../hooks";
 import React, {useCallback, useContext} from "react";
 import AuthContext from "../../../context/auth.context";
 
-const ChargerUserBlockBtn = ({id, isNotBlock}) => {
+const ChargerUserBlockBtn = ({chargerUserId, isNotBlock}) => {
     const {t} = useTranslation();
     const {request} = useHttp();
     const {token} = useContext(AuthContext);
 
     const onBlock = useCallback(async () => {
         try {
-            await request(`http://localhost:8080/api/v1/admins/users/chargers/${id}/block`, "PATCH", null, {
-                Authorization: `${token}`
+            await request(`http://localhost:8080/api/v1/admins/users/chargers/${chargerUserId}/block`, "PATCH", null, {
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
-    }, [request, id, token]);
+    }, [request, chargerUserId, token]);
 
     return (
         <button

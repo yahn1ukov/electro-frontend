@@ -6,17 +6,17 @@ import {Field, Form, Formik} from "formik";
 import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const StationChangeFreePlaces = () => {
-    const [success, setSuccess] = useState("");
-    const {token} = useContext(AuthContext);
+    const [success, setSuccess] = useState(null);
     const {request, loading, error, clearError} = useHttp();
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const initialValues = {name: "", freePlace: 0};
 
     const onSubmit = useCallback(async (values) => {
         try {
             const data = await request(`http://localhost:8080/api/v1/stations/${values.name}/free-place`, "PATCH", {freePlace: values.freePlace}, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
             setSuccess(data.message);
         } catch (e) {
@@ -26,7 +26,10 @@ const StationChangeFreePlaces = () => {
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, {resetForm}) => {
+                onSubmit(values);
+                resetForm(initialValues);
+            }}
         >
             <Form className="form" style={{marginTop: "25px"}}>
                 {success && <MessageSuccess success={success}/>}
@@ -55,7 +58,10 @@ const StationChangeFreePlaces = () => {
                 <button
                     className="btn btn-submit"
                     type="submit"
-                    onClick={clearError}
+                    onClick={() => {
+                        clearError();
+                        setSuccess(null);
+                    }}
                 >
                     {t("buttons.submit")}
                 </button>

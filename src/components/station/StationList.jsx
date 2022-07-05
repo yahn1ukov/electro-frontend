@@ -1,23 +1,23 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../hooks";
-import AuthContext from "../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import StationDeleteBtn from "./StationDeleteBtn";
+import AuthContext from "../../context/auth.context";
 
 const StationList = () => {
     const [listOfStations, setListOfStations] = useState([]);
     const {request, loading} = useHttp();
-    const {token, id} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfStations = useCallback(async () => {
         try {
-            return await request(`http://localhost:8080/api/v1/stations/users/${id}`, "GET", null, {
-                Authorization: `${token}`
+            return await request(`http://localhost:8080/api/v1/stations/users/current`, "GET", null, {
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
-    }, [request, token, id]);
+    }, [request, token]);
 
     useEffect(() => {
         getListOfStations()

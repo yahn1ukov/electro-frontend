@@ -1,20 +1,20 @@
 import React, {useCallback, useContext, useEffect, useState} from "react";
 import {useHttp} from "../../../hooks";
-import AuthContext from "../../../context/auth.context";
 import {useTranslation} from "react-i18next";
 import StationUserDeleteBtn from "./StationUserDeleteBtn";
 import StationUserBlockBtn from "./StationUserBlockBtn";
+import AuthContext from "../../../context/auth.context";
 
 const StationUserList = () => {
     const [listOfStationUsers, setListOfStationUsers] = useState([]);
     const {request, loading} = useHttp();
-    const {token} = useContext(AuthContext);
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const getListOfStationUsers = useCallback(async () => {
         try {
             return await request("http://localhost:8080/api/v1/admins/users/stations", "GET", null, {
-                Authorization: `${token}`
+                Authorization: `Bearer ${token}`
             });
         } catch (e) {
         }
@@ -27,7 +27,7 @@ const StationUserList = () => {
 
     return (
         <div style={{"marginTop": "25px"}}>
-            <div style={{"display": "flex", "justifyContent": "space-between", "alignItems": "center"}}>
+            <div className="content-between">
                 <button
                     type="button"
                     className="btn btn-submit"
@@ -54,8 +54,9 @@ const StationUserList = () => {
                                     className="list-item-group-text">{t("users.elements.createdAt")}: {new Date(stationUser?.createdAt).toLocaleDateString()}</span>
                             </div>
                             <div>
-                                <StationUserBlockBtn id={stationUser?.id} isNotBlock={stationUser?.isNotBlock}/>
-                                <StationUserDeleteBtn id={stationUser?.id}/>
+                                <StationUserBlockBtn stationUserId={stationUser?.id}
+                                                     isNotBlock={stationUser?.isNotBlock}/>
+                                <StationUserDeleteBtn stationUserId={stationUser?.id}/>
                             </div>
                         </li>) :
                         <li className="list-item">

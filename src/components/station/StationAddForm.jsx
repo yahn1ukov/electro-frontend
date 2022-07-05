@@ -6,10 +6,10 @@ import {Field, Form, Formik} from "formik";
 import {MessageError, MessageLoading, MessageSuccess} from "../message";
 
 const StationAddForm = () => {
-    const [success, setSuccess] = useState("");
-    const {token, id} = useContext(AuthContext);
+    const [success, setSuccess] = useState(null);
     const {request, loading, clearError, error} = useHttp();
     const {t} = useTranslation();
+    const {token} = useContext(AuthContext);
 
     const initialValues = {
         name: "",
@@ -30,18 +30,21 @@ const StationAddForm = () => {
 
     const onSubmit = useCallback(async (values) => {
         try {
-            const data = await request(`http://localhost:8080/api/v1/stations/users/${id}/create`, "POST", {...values}, {
-                Authorization: `${token}`
+            const data = await request(`http://localhost:8080/api/v1/stations/users/current/create`, "POST", {...values}, {
+                Authorization: `Bearer ${token}`
             });
             setSuccess(data.message);
         } catch (e) {
         }
-    }, [id, token, request]);
+    }, [token, request]);
 
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={onSubmit}
+            onSubmit={(values, {resetForm}) => {
+                onSubmit(values);
+                resetForm(initialValues);
+            }}
         >
             <Form className="form">
                 {success && <MessageSuccess success={success}/>}
@@ -202,7 +205,10 @@ const StationAddForm = () => {
                 <button
                     className="btn btn-submit"
                     type="submit"
-                    onClick={clearError}
+                    onClick={() => {
+                        clearError();
+                        setSuccess(null);
+                    }}
                 >
                     {t("buttons.submit")}
                 </button>
